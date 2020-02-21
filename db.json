@@ -1,0 +1,53 @@
+{
+    "users": [
+        {
+            "id": "1", 
+            "name": "thinh", 
+            "pass": "thinh123",
+            "isAdmin": true
+        }, 
+        {
+            "id": "2",
+            "name":"long",
+            "pass": "long123"
+        } 
+    ],
+    "tasks": [
+        {
+            "id": "1", 
+            "name": "Đi chơi",
+            "status": "chuagiao"
+        },
+        {
+            "id": "2", 
+            "name": "Đi về", 
+            "status": "chuagiao"
+        },
+        {
+            "id": "3", 
+            "name": "Đi học", 
+            "for": "nhan",
+            "status": "dagiao",
+            "percent": "20"
+        },
+        {
+            "id": "4", 
+            "name": "Đi bệnh viện", 
+            "for": "quan",
+            "status": "dagiao",
+            "percent": "67"
+        },
+        {
+            "id": "5", 
+            "name": "Đi tù", 
+            "for": "truc",
+            "status": "dahoanthanh"
+        },
+        {
+            "id": "6", 
+            "name": "Đi nghĩa vụ", 
+            "for": "chau",
+            "status": "dahoanthanh"
+        }
+    ]
+}
