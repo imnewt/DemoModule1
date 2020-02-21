@@ -21,22 +21,17 @@ export default class SignUp extends React.Component{
                     this.setState({errorMessage: 'Mật khẩu nhập lại bị sai'})
                 }
                 else{
-
-                    var newNv = {
-                        name: username,
-                        pass: password,
-                    }
-                    db.users.push(newNv);
+                    Alert.alert('Đăng ký thành công');
                     navigation.goBack();
                 }
             }
             
         }
-      }
+    }
 
-      componentDidMount() {
-          this.setState({users: db.users})
-      }
+    componentDidMount() {
+        this.setState({users: db.users})
+    }
     render(){
         return(
             <SafeAreaView style={styles.mainContainer}> 
