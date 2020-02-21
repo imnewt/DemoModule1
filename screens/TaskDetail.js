@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import TaskDetailItem from '../components/TaskDetailItem';
-const db = require('../db.json')
 export default class TaskDetail extends Component {
 
-    state = {
-        info: db.tasks
-    }
+    static navigationOptions = {
+        headerTitleAlign: {
+            textAlign: 'center'
+        }
+    };
 
     render() {
-        const { info } = this.state;
-        const { navigation } = this.props;
+        const { info } = this.props.route.params;
         return (
-            <TaskDetailItem info={info} />
+            <View style={styles.container}>
+                <TaskDetailItem info={info} />
+            </View>
+            
         )
     }
 }
@@ -20,7 +23,6 @@ export default class TaskDetail extends Component {
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 16, 
-        backgroundColor: '#fffaff', 
         paddingTop: 16
     },
     wrapper: {

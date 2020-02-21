@@ -3,9 +3,9 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default class TaskListItem extends Component {
     render() {
-        const { info } = this.props;
+        const { info, onPress } = this.props;
         return (
-            <TouchableOpacity activeOpacity={.7} style={styles.container}>
+            <TouchableOpacity activeOpacity={.7} style={styles.container} onPress={onPress}>
                 <Text style={styles.name}>{info.name}</Text>
             </TouchableOpacity>
         )

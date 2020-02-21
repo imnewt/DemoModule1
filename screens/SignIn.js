@@ -18,7 +18,6 @@ export default class SignIn extends React.Component {
         if (user) {
             navigation.navigate("Home", {user: user, tasks: db.tasks})
         }
-        console.log(navigation);
     }
 
     componentDidMount() {
