@@ -1,7 +1,7 @@
 import React from 'react'
 import {StyleSheet, View, TextInput, Text,SafeAreaView, TouchableOpacity, Alert} from 'react-native'
 const db = require("../db.json");
-var fs = require('fs');
+
 export default class SignUp extends React.Component{
     state = { users: [] ,username: '', password: '', confirmPassword: '', errorMessage:'' }
     
@@ -21,25 +21,17 @@ export default class SignUp extends React.Component{
                     this.setState({errorMessage: 'Mật khẩu nhập lại bị sai'})
                 }
                 else{
-
-                    var newNv = {
-                        name: username,
-                        pass: password,
-                    }
-                    users.push(newNv);
-                    var content = JSON.stringify(users);
-                    fs.writeFileSync('../db.json', content);
-                    //Alert.alert('Đăng kí thành công');
+                    Alert.alert('Đăng ký thành công');
                     navigation.goBack();
                 }
             }
             
         }
-      }
+    }
 
-      componentDidMount() {
-          this.setState({users: db.users})
-      }
+    componentDidMount() {
+        this.setState({users: db.users})
+    }
     render(){
         return(
             <SafeAreaView style={styles.mainContainer}> 
