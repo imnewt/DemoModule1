@@ -19,6 +19,7 @@ export default class TaskButton extends Component {
             filteredList = data.filter(item => item.status === "dahoanthanh")
         }
         navigation.navigate("TaskList", {data: filteredList});
+        // console.log(this.props);
         //console.log(filteredList);
     }
 

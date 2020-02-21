@@ -7,7 +7,7 @@ export default class Home extends Component {
     render() {
         const { user, tasks } = this.props.route.params;
         return (
-            user.isAdmin ? <HomeQL data={tasks}/> : <HomeNV data={tasks}/>
+            user.isAdmin ? <HomeQL navigation={this.props.navigation} data={tasks}/> : <HomeNV data={tasks}/>
         )
     }
 }

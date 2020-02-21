@@ -7,12 +7,13 @@ import TaskButton from "../components/TaskButton"
 
 export default class HomeQL extends Component {
     render() {
-        const { data } = this.props;
+        const { data, navigation } = this.props;
+console.log(navigation)
         return (
             <SafeAreaView style={styles.container}>
-                <TaskButton title="Chưa giao" status="chuagiao" data={data}/>
-                <TaskButton title="Đã giao" status="dagiao" data={data} />
-                <TaskButton title="Đã hoàn thành" status="dahoanthanh" data={data} /> 
+                <TaskButton navigation={navigation} title="Chưa giao" status="chuagiao" data={data}/>
+                <TaskButton navigation={navigation} title="Đã giao" status="dagiao" data={data} />
+                <TaskButton navigation={navigation} title="Đã hoàn thành" status="dahoanthanh" data={data} /> 
             </SafeAreaView>
         )
     }

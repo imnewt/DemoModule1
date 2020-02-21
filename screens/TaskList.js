@@ -35,7 +35,7 @@ export default class TaskList extends Component {
     }
 
     render() {
-        const { data } = this.state;
+        const { data } = this.props.route.params;
         const { navigation } = this.props;
         return (
             <FlatList 
