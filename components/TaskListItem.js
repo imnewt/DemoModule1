@@ -15,16 +15,16 @@ export default class TaskListItem extends Component {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        backgroundColor: '#FFF',
-        paddingHorizontal: 32,
-        paddingVertical: 32,
-        borderRadius: 5,
-        borderWidth: 2,
-        borderStyle: 'solid',
-        borderColor: '#DDD'
+        backgroundColor: '#FF5562',
+        borderRadius: 10,
+        margin: 20,
+        color: '#FFF'
     },
     name: {
-        fontSize: 18,
-        fontWeight: '700'
+        padding: 20,
+        fontSize: 20,
+        fontWeight: "700",
+        color: "#FFF",
+        textTransform: "uppercase"
     }
 })

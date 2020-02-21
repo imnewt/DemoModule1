@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { AirbnbRating, Slider  } from 'react-native-elements';
+const hihi=100
 export default class TaskDetail extends Component {
 
     state = {
@@ -15,23 +16,30 @@ export default class TaskDetail extends Component {
     render() {
         const { info } = this.props;
         return (
+            // <View style={{ flex: 1, alignItems: 'stretch', justifyContent: 'center' }}>
+            //     <Slider
+            //         value={this.state.value}
+            //         onValueChange={value => this.setState({ value })}
+            //     />
+            // </View>
             <View style={styles.container}>
                 <Text style={styles.text}>{info.name}</Text>
-                <Text style={[styles.text, { fontWeight: '700'}]}>{info.for ? info.for : 'Chưa có người thực hiện công việc này'}</Text>
-                <Text style={styles.text} numberOfLines={5} ellipsizeMode='tail'>{info.detail}</Text>
-                <Text style={styles.text}>{info.percent}</Text>
-                <>
+                <Text style={[styles.text, { fontWeight: '700'}]}>Người thực hiện: {info.for ? info.for : 'Chưa có'}</Text>
+                <Text style={[styles.text, { textAlign: 'center'}]} numberOfLines={5} ellipsizeMode='tail'>{info.detail}</Text>
+                {/* <Text style={styles.text}>{info.percent}</Text> */}
+                {/* <>
                 {
                     info.status === 'dahoanthanh' || info.status === 'dagiao' ?
-                    <View>
+                    <View style={{ flex: 1, alignItems: 'stretch', justifyContent: 'center' }}>
                         <Slider
+                        maximumValue={hihi}
                             value={this.state.value}
                             onValueChange={value => this.setState({ value })}
                         />
+                        <Text>Value: {this.state.value}</Text>
                     </View> : null
                 }
-                </>
-
+                </> */}
                 <>
                     {
                         info.status === 'dahoanthanh' ? 
@@ -53,8 +61,8 @@ export default class TaskDetail extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
-        paddingHorizontal: 32,
+        // alignItems: 'center',
+        paddingHorizontal: 25,
         paddingVertical: 16,
         backgroundColor: '#FFF',
         borderRadius: 5,
