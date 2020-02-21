@@ -1,29 +1,23 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import React, { Component } from 'react';
-import { StyleSheet, View, Text  } from 'react-native';
-import TaskList from './Screen/TaskList';
+import SignInScreen from "./screens/SignIn"
+import HomeScreen from "./screens/Home";
+import TaskListScreen from "./screens/TaskList";
 
-class App extends Component {
-  render() {
-    return (
-      <TaskList />
-    )
-  }
+const Stack = createStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="SignIn">
+        <Stack.Screen name="SignIn" component={SignInScreen}/>
+        <Stack.Screen name="Home" component={HomeScreen}/>
+        <Stack.Screen name="TaskList" component={TaskListScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-});
 
 export default App;
