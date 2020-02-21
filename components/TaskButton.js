@@ -5,44 +5,20 @@ import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
 
 export default class TaskButton extends Component {
-   
-    handlePressToList = (data, status) => {
-        const { navigation } = this.props;
-        var filteredList = [];
-        if (status === "chuagiao") {
-            filteredList = data.filter(item => item.status === "chuagiao")
-        }
-        else if (status === "dagiao") {
-            filteredList = data.filter(item => item.status === "dagiao")
-        }
-        else {
-            filteredList = data.filter(item => item.status === "dahoanthanh")
-        }
-        navigation.navigate("TaskList", {data: filteredList});
-        // console.log(this.props);
-        //console.log(filteredList);
-    }
-
     render() {
-        const { title, data, status } = this.props
+        const { title, tasks, status, user, func } = this.props
         return (
-            <View style={styles.container}>
-                <TouchableOpacity style={styles.button} onPress={() => this.handlePressToList(data, status)}>
-                    <Text style={styles.text}>{title}</Text>
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity style={styles.button} onPress={() => func(tasks, status, user)}>
+                <Text style={styles.text}>{title}</Text>
+            </TouchableOpacity>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        //marginVertical: 20,
-    },
     button: {
         width: 300,
-        backgroundColor: "pink",
+        backgroundColor: "#FF5562",
         alignItems: "center",
         borderRadius: 10,
         margin: 20
@@ -51,6 +27,7 @@ const styles = StyleSheet.create({
         padding: 20,
         fontSize: 20,
         fontWeight: "700",
+        color: "#FFF",
         textTransform: "uppercase"
     }
 })
