@@ -1,5 +1,6 @@
 import React from 'react'
 import {StyleSheet, View, TextInput, Text,SafeAreaView, TouchableOpacity, Alert} from 'react-native'
+import BackgroundImage from "../components/BackgroundImage";
 const db = require("../db.json");
 
 export default class SignUp extends React.Component{
@@ -34,6 +35,7 @@ export default class SignUp extends React.Component{
     }
     render(){
         return(
+            <BackgroundImage>
             <SafeAreaView style={styles.mainContainer}> 
                 <View style={styles.container}>      
                     <View style={styles.titleBlock}>
@@ -79,6 +81,7 @@ export default class SignUp extends React.Component{
                     </View>
                 </View>
             </SafeAreaView> 
+            </BackgroundImage>
         )
     }
 }

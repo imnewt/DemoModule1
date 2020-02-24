@@ -11,7 +11,7 @@ export default class SignIn extends React.Component{
         const user = users.find(user => user.name === this.state.username && user.pass === this.state.password)
         if (user) {
             navigation.navigate("Home", {user: user, tasks: db.tasks})
-        }
+        } 
         else{
             if(this.state.username){
                 if(this.state.password){
@@ -39,36 +39,30 @@ export default class SignIn extends React.Component{
             <ImageBackground source={bg} style={{width: '100%', height: '100%'}}>
             <SafeAreaView style={styles.mainContainer}> 
                 <View style={styles.container}>      
-                    <View style={styles.titleBlock}>
-                        <Text style={styles.title}>Đăng nhập</Text>
-                    </View>   
+                    <Text style={styles.title}>LOGIN</Text>
                     <View style={styles.signInBlock}>
-                            <Text style={styles.textInputTitle}>Tài khoản</Text>
-                            <TextInput
-                                style={styles.textInput}
-                                autoCapitalize="none"
-                                placeholder="Nhập tài khoản"
-                                onChangeText={username => this.setState({ username})}
-                                value={this.state.username}
-                            />
-                            <Text style={styles.textInputTitle}>Mật khẩu</Text>
-                            <TextInput
-                                secureTextEntry
-                                style={styles.textInput} 
-                                autoCapitalize="none"
-                                placeholder="Nhập mật khẩu"
-                                onChangeText={password => this.setState({ password })}
-                                value={this.state.password}
-                            />
+                        <Text style={styles.textInputTitle}>USERNAME</Text>
+                        <TextInput
+                            style={styles.textInput}
+                            autoCapitalize="none"
+                            onChangeText={username => this.setState({ username})}
+                            value={this.state.username}
+                        />
+                        <Text style={styles.textInputTitle}>PASSWORD</Text>
+                        <TextInput
+                            secureTextEntry
+                            style={styles.textInput} 
+                            autoCapitalize="none"
+                            onChangeText={password => this.setState({ password })}
+                            value={this.state.password}
+                        />
                     </View>
                     <View style={styles.report}>
                         <Text style={styles.reportTitle}>{this.state.errorMessage}</Text>
                     </View>
                     <View  style={styles.confirmBlock}>
                         <TouchableOpacity style={styles.confirmBlock} onPress={this.handleLogin}>
-                        <View style={styles.confirmButton} >
-                            <Text style={styles.confirmText}>Đăng nhập</Text>
-                        </View>
+                            <Text style={styles.confirmText}>Log in</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -81,7 +75,9 @@ export default class SignIn extends React.Component{
 const styles = StyleSheet.create({
     mainContainer:{
         flex: 1,
-        
+    //    / backgroundColor: "#FFF",
+        margin: 20,
+        borderRadius: 20
     },
     container:{
         flex: 1,
@@ -93,6 +89,8 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     title: {
+        alignSelf: 'center',
+        marginBottom: 20,
         color: 'blue',
         fontSize: 35,
         fontFamily: 'Cochin',
@@ -102,20 +100,20 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
     textInputTitle:{
-        fontWeight: '600',
-        fontSize: 15,
-        marginBottom: 8
+        fontWeight: '700',
+        fontSize: 16,
     },
     textInput: {
         height: 40,
         borderColor: 'gray',
         borderBottomWidth: 2,
-        marginBottom: 10,
-        paddingLeft: 6,
+        marginBottom: 30
     },
     report:{
         alignItems: 'center',
-        marginTop: 10
+        justifyContent: "center",
+        //marginTop: 10,
+        height: 32
     },
     reportTitle:{
         color: 'red',
@@ -123,20 +121,17 @@ const styles = StyleSheet.create({
     },
     confirmBlock: {
         alignItems: 'center',
-    },
-    confirmButton: {
-        backgroundColor: 'red',
-        height: 45,
-        width: 300,
+        backgroundColor: '#5d5dbe',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 50,
-        marginTop: 30
+        borderRadius: 20,
     },
     confirmText: {
         fontWeight: 'bold',
         fontSize: 20,
+        padding: 16,
         color: '#FFF',
+        textTransform: "uppercase"
     },
     optionsBlock:{
         flexDirection: 'row',
