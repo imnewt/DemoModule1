@@ -28,25 +28,10 @@ export default class TaskDetail extends Component {
                 
                 {
                     user.isAdmin
-
-                    ? 
-                        info.status === 'undeliveried' ? 
+                    ?   info.status === 'undeliveried' ? 
                         <View>
                             <View style={styles.choseBlock}>
                                 <Text style={styles.staffChoosing}>Choose:</Text>
-                                {/* <Picker
-                                    selectedValue={this.state.language}
-                                    style={{height: 50, width: 150, marginBottom: 50, justifyContent: 'center', marginLeft: 50}}
-                                    onValueChange={(itemValue, itemIndex) =>
-                                        this.setState({language: itemValue})
-                                    }>
-                                    <FlatList
-                                        data={this.state.user}
-                                        renderItem={({item}) => (
-                                            <Picker.Item label='=' />
-                                        )}
-                                    />
-                                </Picker> */}
                                 <TextInput
                                     style={styles.inputChoose}
                                     placeholder='Staff name'
@@ -56,39 +41,33 @@ export default class TaskDetail extends Component {
                                 <Text style={styles.chooseButtonText}>Save</Text>
                             </TouchableOpacity>
     
-                        </View> :
-                        
-    
-                        
-                        info.status === 'doing' ? 
-                        <View>
-                            <Text style={styles.staffChoosing}>Process: <Text style={styles.info}>{this.state.value}%</Text></Text>
-                            
-                        </View> :
-                        
-    
-                        
-                        info.status === 'done' ? 
-                        <View>
-                            <View style={styles.choseBlock}>
-                                <Text style={[styles.staffChoosing, {marginRight: 15}]}>Rating:</Text>
-                                <AirbnbRating
-                                    count={5}
-                                    defaultRating={0}
-                                    showRating={false}
-                                    size={20}
-                                    /> 
-                            </View>
-                            <View style={[styles.choseBlock, {marginTop: 15}]}>
-                                <Text style={[styles.staffChoosing, {marginRight: 10}]}>Comment:</Text>
-                                <TextInput
-                                    style={[styles.inputChoose, {marginLeft: 0}]}
-                                />
-                            </View>
-                            <TouchableOpacity style={styles.chooseButton}>
-                                <Text style={styles.chooseButtonText}>Save</Text>
-                            </TouchableOpacity>
-                        </View> : null
+                        </View> 
+                        :   info.status === 'doing' ? 
+                            <View>
+                                <Text style={styles.staffChoosing}>Process: <Text style={styles.info}>{this.state.value}%</Text></Text>
+                                
+                            </View> 
+                        :   info.status === 'done' ? 
+                            <View>
+                                <View style={styles.choseBlock}>
+                                    <Text style={[styles.staffChoosing, {marginRight: 15}]}>Rating:</Text>
+                                    <AirbnbRating
+                                        count={5}
+                                        defaultRating={0}
+                                        showRating={false}
+                                        size={20}
+                                        /> 
+                                </View>
+                                <View style={[styles.choseBlock, {marginTop: 15}]}>
+                                    <Text style={[styles.staffChoosing, {marginRight: 10}]}>Comment:</Text>
+                                    <TextInput
+                                        style={[styles.inputChoose, {marginLeft: 0}]}
+                                    />
+                                </View>
+                                <TouchableOpacity style={styles.chooseButton}>
+                                    <Text style={styles.chooseButtonText}>Save</Text>
+                                </TouchableOpacity>
+                            </View> : null
                         
                     : 
                     <View>

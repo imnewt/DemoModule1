@@ -8,7 +8,7 @@ export default class TaskButton extends Component {
         //const { title, tasks, status, user, func } = this.props
         const { tasks, info, func, user } = this.props;
         return (
-            <TouchableOpacity style={styles.container} activeOpacity={.6} onPress={() => func(tasks, info.status,user)}>
+            <TouchableOpacity style={styles.container} activeOpacity={.6} onPress={() => func(tasks, info.status, user)}>
                 <Image style={{height: 64, width: 64}} source={{uri: info.icon}} />
                 <Text style={styles.status}>{info.tag}</Text>
                 <Text style={styles.num}>(3)</Text>
