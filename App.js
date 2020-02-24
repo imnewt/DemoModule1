@@ -15,11 +15,13 @@ function App() {
       <Stack.Navigator 
         initialRouteName="SignIn"
         screenOptions={{
-          headerStyle: {
-            backgroundColor: "#FF5562",
-          },
+          title: null,
+          headerTransparent: true,
+          // headerStyle: {
+          //   backgroundColor: "#FF5562",
+          // },
           headerTitleAlign: "center",
-          headerTintColor: "#FFF",
+          headerTintColor: "#1B2D2A",
           headerTitleStyle: {
             fontWeight: "bold"
           }
@@ -27,9 +29,9 @@ function App() {
       >
         <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="SignUp" component={SignUpScreen}/>
-        <Stack.Screen name="Home" component={HomeScreen}/>
-        <Stack.Screen name="TaskList" component={TaskListScreen} />
-        <Stack.Screen name="TaskDetail" component={TaskDetailScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="TaskList" component={TaskListScreen}/>
+        <Stack.Screen name="TaskDetail" component={TaskDetailScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
