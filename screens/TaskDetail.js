@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import TaskDetailItem from '../components/TaskDetailItem';
+import Background from '../components/BackgroundImage'
 export default class TaskDetail extends Component {
 
     static navigationOptions = {
@@ -10,11 +11,16 @@ export default class TaskDetail extends Component {
     };
 
     render() {
-        const { info } = this.props.route.params;
+        const { info, user } = this.props.route.params;
         return (
-            <View style={styles.container}>
-                <TaskDetailItem info={info} />
-            </View>
+            <Background>
+                <View style={styles.container}>
+                    <TaskDetailItem 
+                    info={info} 
+                    user={user}
+                    />
+                </View>
+            </Background>
             
         )
     }
@@ -23,7 +29,8 @@ export default class TaskDetail extends Component {
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 16, 
-        paddingTop: 16
+        paddingTop: 16,
+        marginTop: 80
     },
     wrapper: {
         marginBottom: 15

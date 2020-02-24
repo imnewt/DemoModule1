@@ -58,7 +58,7 @@ export default class Home extends Component {
         const { navigation } = this.props;
         var filteredList = [];
         filteredList = tasks.filter(item => item.for === user.name);
-        navigation.navigate("TaskList", {tasks: filteredList});
+        navigation.navigate("TaskList", {tasks: filteredList, user: user});
     }
  
     render() {
