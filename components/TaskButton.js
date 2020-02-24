@@ -1,33 +1,39 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
 
 export default class TaskButton extends Component {
     render() {
-        const { title, tasks, status, user, func } = this.props
+        //const { title, tasks, status, user, func } = this.props
+        const { info } = this.props;
         return (
-            <TouchableOpacity style={styles.button} onPress={() => func(tasks, status, user)}>
-                <Text style={styles.text}>{title}</Text>
+            <TouchableOpacity style={styles.container} activeOpacity={.6}>
+                <Image style={{height: 64, width: 64}} source={{uri: info.icon}} />
+                <Text style={styles.status}>{info.status}</Text>
+                <Text style={styles.num}>(3)</Text>
             </TouchableOpacity>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    button: {
-        width: 300,
-        backgroundColor: "#FF5562",
-        alignItems: "center",
-        borderRadius: 10,
-        margin: 20
+    container: {
+        backgroundColor: '#FFF', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        paddingVertical: 15, 
+        borderRadius: 20, 
+        marginVertical: 10
     },
-    text: {
-        padding: 20,
+    status: {
+        marginVertical: 6,
         fontSize: 20,
         fontWeight: "700",
-        color: "#FFF",
         textTransform: "uppercase"
+    },
+    num: {
+        fontSize: 18,
+        color: '#999'
     }
 })
