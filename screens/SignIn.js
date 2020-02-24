@@ -75,7 +75,6 @@ export default class SignIn extends React.Component{
 const styles = StyleSheet.create({
     mainContainer:{
         flex: 1,
-    //    / backgroundColor: "#FFF",
         margin: 20,
         borderRadius: 20
     },

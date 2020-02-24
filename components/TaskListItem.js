@@ -5,9 +5,9 @@ export default class TaskListItem extends Component {
     render() {
         const { info, onPress } = this.props;
         return (
-            <TouchableOpacity activeOpacity={.7} style={styles.container} onPress={onPress}>
-                <Text style={styles.name}>{info.name}</Text>
-            </TouchableOpacity>
+                <TouchableOpacity activeOpacity={.7} style={styles.container} onPress={onPress}>
+                    <Text style={styles.name}>{info.name}</Text>
+                </TouchableOpacity>
         )
     }
 }
@@ -15,16 +15,17 @@ export default class TaskListItem extends Component {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        backgroundColor: '#FF5562',
+        backgroundColor: '#5d5dbe',
         borderRadius: 10,
         margin: 20,
-        color: '#FFF'
+        color: '#FFF',
     },
     name: {
-        padding: 20,
+        padding: 30,
         fontSize: 20,
         fontWeight: "700",
         color: "#FFF",
-        textTransform: "uppercase"
+        textTransform: "uppercase",
+        textAlign: 'center'
     }
 })

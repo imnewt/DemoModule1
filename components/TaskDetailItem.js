@@ -23,9 +23,9 @@ export default class TaskDetail extends Component {
             //     />
             // </View>
             <View style={styles.container}>
-                <Text style={styles.text}>{info.name}</Text>
-                <Text style={[styles.text, { fontWeight: '700'}]}>Người thực hiện: {info.for ? info.for : 'Chưa có'}</Text>
-                <Text style={[styles.text, { textAlign: 'center'}]} numberOfLines={5} ellipsizeMode='tail'>{info.detail}</Text>
+                <Text style={styles.taskName}>{info.name}</Text>
+                <Text style={styles.peopleDoing}>Người thực hiện: {info.for ? info.for : 'Chưa có'}</Text>
+                <Text style={styles.taskDetail} numberOfLines={5} ellipsizeMode='tail'>{info.detail}</Text>
                 {/* <Text style={styles.text}>{info.percent}</Text> */}
                 {/* <>
                 {
@@ -65,11 +65,27 @@ const styles = StyleSheet.create({
         paddingHorizontal: 25,
         paddingVertical: 16,
         backgroundColor: '#FFF',
-        borderRadius: 5,
+        borderRadius:10,
         borderStyle: 'solid',
+        borderWidth: 0.5,
+        borderColor: 'grey'
     },
-    text: {
+    taskName: {
+        alignSelf: 'center',
         marginBottom: 15,
-        fontSize: 18
+        fontSize: 30,
+        fontWeight: 'bold'
+    },
+    peopleDoing: {
+        alignSelf: 'center',
+        marginBottom: 15,
+        fontSize: 23,
+        fontWeight: 'bold'
+    },
+    taskDetail: {
+        marginBottom: 15,
+        fontSize: 17,
+        textAlign: 'center'
     }
+
 })

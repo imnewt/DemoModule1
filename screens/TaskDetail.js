@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import TaskDetailItem from '../components/TaskDetailItem';
+import Background from '../components/BackgroundImage'
 export default class TaskDetail extends Component {
 
     static navigationOptions = {
@@ -12,9 +13,11 @@ export default class TaskDetail extends Component {
     render() {
         const { info } = this.props.route.params;
         return (
-            <View style={styles.container}>
-                <TaskDetailItem info={info} />
-            </View>
+            <Background>
+                <View style={styles.container}>
+                    <TaskDetailItem info={info} />
+                </View>
+            </Background>
             
         )
     }
