@@ -1,6 +1,8 @@
 import React from 'react'
-import {StyleSheet, View, TextInput, Text,SafeAreaView, TouchableOpacity} from 'react-native'
+import {StyleSheet, View, ImageBackground, TextInput, Text,SafeAreaView, TouchableOpacity} from 'react-native'
 const db = require("../db.json");
+import bg from "../images/gradient-bg.png"
+
 export default class SignIn extends React.Component{
     state = { users: [],username: '', password: '', errorMessage: '' }
     handleLogin = () => {
@@ -34,6 +36,7 @@ export default class SignIn extends React.Component{
     }
     render(){
         return(
+            <ImageBackground source={bg} style={{width: '100%', height: '100%'}}>
             <SafeAreaView style={styles.mainContainer}> 
                 <View style={styles.container}>      
                     <View style={styles.titleBlock}>
@@ -70,6 +73,7 @@ export default class SignIn extends React.Component{
                     </View>
                 </View>
             </SafeAreaView> 
+            </ImageBackground>
         )
     }
 }
@@ -77,6 +81,7 @@ export default class SignIn extends React.Component{
 const styles = StyleSheet.create({
     mainContainer:{
         flex: 1,
+        
     },
     container:{
         flex: 1,

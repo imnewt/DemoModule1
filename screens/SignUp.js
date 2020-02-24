@@ -94,27 +94,30 @@ const styles = StyleSheet.create({
     },
     titleBlock:{
         alignItems: 'center',
-        marginBottom: 20
+        marginBottom: 100,
+        marginTop: -100,
+        //backgroundColor: '#3F292B',
+        height: 60,
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     title: {
-        color: 'blue',
-        fontSize: 35,
-        fontFamily: 'Cochin',
-        fontWeight: '700'
-    },
-    signInBlock:{
-        flexDirection: 'column',
+        color: '#FF5562',
+        fontSize: 40,
+        fontWeight: 'bold',
     },
     textInputTitle:{
         fontWeight: '600',
-        fontSize: 15,
-        marginBottom: 8
+        fontSize: 17,
+        marginBottom: 8,
+        color: '#3F292B'
     },
     textInput: {
-        height: 40,
-        borderColor: 'gray',
+        height: 45,
         borderBottomWidth: 2,
-        marginBottom: 10
+        marginBottom: 10,
+        paddingLeft: 6,
     },
     report:{
         alignItems: 'center',
@@ -129,17 +132,18 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     confirmButton: {
-        backgroundColor: 'red',
-        height: 45,
-        width: 300,
+        backgroundColor: '#FF5562',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 50
+        borderRadius: 50,
+
     },
     confirmText: {
         fontWeight: 'bold',
         fontSize: 20,
         color: '#FFF',
+        padding: 18,
+        paddingHorizontal: 100
     },
     optionsBlock:{
         flexDirection: 'row',
