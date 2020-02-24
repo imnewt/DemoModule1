@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Picker, FlatList } from 'react-native';
 import { AirbnbRating, Slider  } from 'react-native-elements';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+
 const hihi=100
 export default class TaskDetail extends Component {
 
     state = {
-        value: 0
+        value: 0,
+        user: ['chau', 'truc', 'nhan'],
+        rating: '',
+        process: 50
     }
 
     componentDidMount() {
@@ -14,46 +19,92 @@ export default class TaskDetail extends Component {
     }
 
     render() {
-        const { info } = this.props;
+        const { info, user } = this.props;
         return (
-            // <View style={{ flex: 1, alignItems: 'stretch', justifyContent: 'center' }}>
-            //     <Slider
-            //         value={this.state.value}
-            //         onValueChange={value => this.setState({ value })}
-            //     />
-            // </View>
             <View style={styles.container}>
                 <Text style={styles.taskName}>{info.name}</Text>
-                <Text style={styles.peopleDoing}>Người thực hiện: {info.for ? info.for : 'Chưa có'}</Text>
-                <Text style={styles.taskDetail} numberOfLines={5} ellipsizeMode='tail'>{info.detail}</Text>
-                {/* <Text style={styles.text}>{info.percent}</Text> */}
-                {/* <>
+                <Text style={styles.staffDoing}>Handle: <Text style={styles.info}>{info.for ? info.for : 'None'}</Text></Text>
+                <Text style={styles.taskDetail}>Detail: <Text style={styles.info}>{info.detail}</Text></Text>  
+                
                 {
-                    info.status === 'dahoanthanh' || info.status === 'dagiao' ?
-                    <View style={{ flex: 1, alignItems: 'stretch', justifyContent: 'center' }}>
-                        <Slider
-                        maximumValue={hihi}
-                            value={this.state.value}
-                            onValueChange={value => this.setState({ value })}
-                        />
-                        <Text>Value: {this.state.value}</Text>
-                    </View> : null
-                }
-                </> */}
-                <>
-                    {
+                    user.isAdmin
+
+                    ? 
+                        info.status === 'chuagiao' ? 
+                        <View>
+                            <View style={styles.choseBlock}>
+                                <Text style={styles.staffChoosing}>Choose:</Text>
+                                {/* <Picker
+                                    selectedValue={this.state.language}
+                                    style={{height: 50, width: 150, marginBottom: 50, justifyContent: 'center', marginLeft: 50}}
+                                    onValueChange={(itemValue, itemIndex) =>
+                                        this.setState({language: itemValue})
+                                    }>
+                                    <FlatList
+                                        data={this.state.user}
+                                        renderItem={({item}) => (
+                                            <Picker.Item label='=' />
+                                        )}
+                                    />
+                                </Picker> */}
+                                <TextInput
+                                    style={styles.inputChoose}
+                                    placeholder='Staff name'
+                                />
+                            </View>
+                            <TouchableOpacity style={styles.chooseButton}>
+                                <Text style={styles.chooseButtonText}>Save</Text>
+                            </TouchableOpacity>
+    
+                        </View> :
+                        
+    
+                        
+                        info.status === 'dagiao' ? 
+                        <View>
+                            <Text style={styles.staffChoosing}>Process: <Text style={styles.info}>{this.state.value}%</Text></Text>
+                            
+                        </View> :
+                        
+    
+                        
                         info.status === 'dahoanthanh' ? 
                         <View>
-                            <Text>Đánh giá sự hài lòng về nhân viên</Text>
-                            <AirbnbRating
-                                count={5}
-                                defaultRating={0}
-                                showRating={false}
-                                size={20}
-                            /> 
+                            <View style={styles.choseBlock}>
+                                <Text style={[styles.staffChoosing, {marginRight: 15}]}>Rating:</Text>
+                                <AirbnbRating
+                                    count={5}
+                                    defaultRating={0}
+                                    showRating={false}
+                                    size={20}
+                                    /> 
+                            </View>
+                            <View style={[styles.choseBlock, {marginTop: 15}]}>
+                                <Text style={[styles.staffChoosing, {marginRight: 10}]}>Comment:</Text>
+                                <TextInput
+                                    style={[styles.inputChoose, {marginLeft: 0}]}
+                                />
+                            </View>
+                            <TouchableOpacity style={styles.chooseButton}>
+                                <Text style={styles.chooseButtonText}>Save</Text>
+                            </TouchableOpacity>
                         </View> : null
-                    }
-                </>
+                        
+                    : 
+                    <View>
+                        <View style={[styles.choseBlock, {marginTop: 15}]}>
+                            <Text style={[styles.staffChoosing, {marginRight: 10}]}>Process:</Text>
+                            <TextInput
+                                style={[styles.inputChoose, {marginLeft: 0}]}
+                            />
+                        </View>
+                        <TouchableOpacity style={styles.chooseButton}>
+                            <Text style={styles.chooseButtonText}>Save</Text>
+                         </TouchableOpacity>
+                    </View>
+
+                }
+                    
             </View>
         )
     }
@@ -68,24 +119,61 @@ const styles = StyleSheet.create({
         borderRadius:10,
         borderStyle: 'solid',
         borderWidth: 0.5,
-        borderColor: 'grey'
+        borderColor: 'grey',
     },
     taskName: {
         alignSelf: 'center',
         marginBottom: 15,
-        fontSize: 30,
-        fontWeight: 'bold'
+        fontSize: 35,
+        fontWeight: 'bold',
+        color: '#6d6dbe',
     },
-    peopleDoing: {
-        alignSelf: 'center',
+    staffDoing: {
         marginBottom: 15,
-        fontSize: 23,
-        fontWeight: 'bold'
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#6d6dbe',
+    },
+    staffChoosing: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#6d6dbe',
     },
     taskDetail: {
         marginBottom: 15,
-        fontSize: 17,
-        textAlign: 'center'
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#6d6dbe',
+    },
+    info: {
+        fontWeight: '300',
+        color: '#000'
+    },
+    choseBlock: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    inputChoose:{
+        flex: 1,
+        height: 40, 
+        borderWidth: 1,
+        marginLeft: 10,
+        borderRadius: 10,
+        paddingLeft: 15,
+        fontSize: 16
+    },
+    chooseButton: {
+        marginTop: 30,
+        backgroundColor: '#6d6dbe',
+        borderRadius: 20,
+        //alignSelf: 'center'
+    },
+    chooseButtonText: {
+        padding: 20,
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 18,
+        alignSelf: 'center',
     }
 
 })

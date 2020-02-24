@@ -15,8 +15,8 @@ export default class TaskListItem extends Component {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        backgroundColor: '#5d5dbe',
-        borderRadius: 10,
+        backgroundColor: '#6d6dbe',
+        borderRadius: 20,
         margin: 20,
         color: '#FFF',
     },

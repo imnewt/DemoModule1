@@ -11,20 +11,20 @@ export default class TaskList extends Component {
     };
 
     render() {
-        const { tasks } = this.props.route.params;
+        const { tasks, user } = this.props.route.params;
         const { navigation } = this.props;
         return (
             <Background>
-                {/* <View style={styles.table}> */}
+                <View style={styles.table}>
                     <FlatList 
                         data={tasks}
                         renderItem={({ item }) => (
-                            <TaskListItem info={item} onPress={() => navigation.navigate('TaskDetail', { info: item })}/>
+                            <TaskListItem info={item} onPress={() => navigation.navigate('TaskDetail', { info: item, user: user })}/>
                         )}
                         keyExtractor={(item) => `${item.id}`}
                         contentContainerStyle={styles.container}
                     />
-                {/* </View> */}
+                </View>
             </Background>
         )
     }
@@ -32,15 +32,11 @@ export default class TaskList extends Component {
 
 const styles = StyleSheet.create({
     table: {
-        backgroundColor: '#fff',
-        borderRadius: 10,
-        borderWidth: 0.5,
-        borderColor: 'grey',
-        width: '90%',
-        marginVertical: 20,
-        marginHorizontal: 20,
+        marginTop: 100,
+        
     },
     container: {
+
         paddingHorizontal: 16,
         //paddingTop: 32
     }

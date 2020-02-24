@@ -11,11 +11,14 @@ export default class TaskDetail extends Component {
     };
 
     render() {
-        const { info } = this.props.route.params;
+        const { info, user } = this.props.route.params;
         return (
             <Background>
                 <View style={styles.container}>
-                    <TaskDetailItem info={info} />
+                    <TaskDetailItem 
+                    info={info} 
+                    user={user}
+                    />
                 </View>
             </Background>
             
@@ -26,7 +29,8 @@ export default class TaskDetail extends Component {
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 16, 
-        paddingTop: 16
+        paddingTop: 16,
+        marginTop: 80
     },
     wrapper: {
         marginBottom: 15
