@@ -30,7 +30,7 @@ export default class TaskDetail extends Component {
                     user.isAdmin
 
                     ? 
-                        info.status === 'chuagiao' ? 
+                        info.status === 'undeliveried' ? 
                         <View>
                             <View style={styles.choseBlock}>
                                 <Text style={styles.staffChoosing}>Choose:</Text>
@@ -60,7 +60,7 @@ export default class TaskDetail extends Component {
                         
     
                         
-                        info.status === 'dagiao' ? 
+                        info.status === 'doing' ? 
                         <View>
                             <Text style={styles.staffChoosing}>Process: <Text style={styles.info}>{this.state.value}%</Text></Text>
                             
@@ -68,7 +68,7 @@ export default class TaskDetail extends Component {
                         
     
                         
-                        info.status === 'dahoanthanh' ? 
+                        info.status === 'done' ? 
                         <View>
                             <View style={styles.choseBlock}>
                                 <Text style={[styles.staffChoosing, {marginRight: 15}]}>Rating:</Text>

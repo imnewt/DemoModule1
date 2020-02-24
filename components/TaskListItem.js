@@ -15,7 +15,7 @@ export default class TaskListItem extends Component {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        backgroundColor: '#6d6dbe',
+        backgroundColor: '#FFF',
         borderRadius: 20,
         margin: 20,
         color: '#FFF',
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         padding: 30,
         fontSize: 20,
         fontWeight: "700",
-        color: "#FFF",
+        color: "#6d6dbe",
         textTransform: "uppercase",
         textAlign: 'center'
     }

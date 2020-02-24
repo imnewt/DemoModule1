@@ -10,22 +10,26 @@ export default class Home extends Component {
             {
                 id: 1,
                 icon: 'https://image.flaticon.com/icons/png/128/1187/1187533.png',
-                status: 'undelivered'
+                status: 'undeliveried',
+                tag: "Undeliveried"
             },
             {
                 id: 2,
                 icon: 'https://image.flaticon.com/icons/png/512/1440/1440961.png',
-                status: 'doing'
+                status: 'doing',
+                tag: "Doing"
             },
             {
                 id: 3,
                 icon: 'https://cdn0.iconfinder.com/data/icons/simplie-essential-action/22/action_039-checkmark-check-done-verify-512.png',
-                status: 'done'
+                status: 'done',
+                tag: "Done"
             }
         ],
         staff: {
             icon: 'https://image.flaticon.com/icons/png/128/951/951971.png',
-            status: 'Doing'
+            status: 'doing',
+            tag: "Doing"
         }
     }
 
@@ -39,19 +43,19 @@ export default class Home extends Component {
         navigation.navigate("SignIn");
     }
 
-    handlePressToList = (tasks, status) => {
+    handlePressToList = (tasks, status, user) => {
         const { navigation } = this.props;
         var filteredList = [];
-        if (status === "chuagiao") {
-            filteredList = tasks.filter(item => item.status === "chuagiao")
+        if (status === "undeliveried") {
+            filteredList = tasks.filter(item => item.status === "undeliveried")
         }
-        else if (status === "dagiao") {
-            filteredList = tasks.filter(item => item.status === "dagiao")
+        else if (status === "doing") {
+            filteredList = tasks.filter(item => item.status === "doing")
         }
         else {
-            filteredList = tasks.filter(item => item.status === "dahoanthanh")
+            filteredList = tasks.filter(item => item.status === "done")
         }
-        navigation.navigate("TaskList", {tasks: filteredList});
+        navigation.navigate("TaskList", {tasks: filteredList, user: user});
     }
 
     handlePressToTasks = (tasks,status,user) => {
@@ -82,7 +86,7 @@ export default class Home extends Component {
                             data={categories}
                             renderItem={({ item }) =>
                                 <View style={{ marginBottom: 16 }}>
-                                    <TaskButton info={item} />
+                                    <TaskButton func={this.handlePressToList} tasks={tasks} info={item} user={user}/>
                                 </View>
                             }
                             keyExtractor={(item) => `${item.id}`}
@@ -110,7 +114,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         paddingTop: 20,
         textAlign: 'center',
-        marginBottom: 40
+        marginBottom: 40,
     },
     img: {
         height: 32, 

@@ -6,11 +6,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default class TaskButton extends Component {
     render() {
         //const { title, tasks, status, user, func } = this.props
-        const { info } = this.props;
+        const { tasks, info, func, user } = this.props;
         return (
-            <TouchableOpacity style={styles.container} activeOpacity={.6}>
+            <TouchableOpacity style={styles.container} activeOpacity={.6} onPress={() => func(tasks, info.status,user)}>
                 <Image style={{height: 64, width: 64}} source={{uri: info.icon}} />
-                <Text style={styles.status}>{info.status}</Text>
+                <Text style={styles.status}>{info.tag}</Text>
                 <Text style={styles.num}>(3)</Text>
             </TouchableOpacity>
         )
@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
         marginVertical: 6,
         fontSize: 20,
         fontWeight: "700",
+        color: "#6d6dbe",
         textTransform: "uppercase"
     },
     num: {
