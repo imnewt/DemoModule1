@@ -9,7 +9,7 @@ import TaskListScreen from "./screens/TaskList";
 import TaskDetailScreen from './screens/TaskDetail';
 const Stack = createStackNavigator();
 
-function App() {
+function App(props) {
   return (
     <NavigationContainer>
       <Stack.Navigator 
