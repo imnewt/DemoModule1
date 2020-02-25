@@ -5,12 +5,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default class TaskButton extends Component {
     render() {
-        //const { title, tasks, status, user, func } = this.props
-        const { tasks, info, func, user } = this.props;
+        const { tasks, status, func, icon, user } = this.props;
         return (
-            <TouchableOpacity style={styles.container} activeOpacity={.6} onPress={() => func(tasks, info.status, user)}>
-                <Image style={{height: 64, width: 64}} source={{uri: info.icon}} />
-                <Text style={styles.status}>{info.tag}</Text>
+            <TouchableOpacity style={styles.container} activeOpacity={.6} onPress={() => func(tasks, status, user)}>
+                <Image style={{height: 64, width: 64}} source={{uri: icon}} />
+                <Text style={styles.status}>{status}</Text>
                 <Text style={styles.num}>(3)</Text>
             </TouchableOpacity>
         )

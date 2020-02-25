@@ -12,6 +12,7 @@ export default class TaskList extends Component {
 
     render() {
         const { tasks, user } = this.props.route.params;
+        //console.log(tasks)
         const { navigation } = this.props;
         return (
             <Background>
