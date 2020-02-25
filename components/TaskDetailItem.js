@@ -1,32 +1,31 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Picker, FlatList,} from 'react-native';
-import { AirbnbRating, Slider  } from 'react-native-elements';
+import { AirbnbRating, Rating  } from 'react-native-elements';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class TaskDetail extends Component {
 
     state = {
-        value: 0,
-        user: ['chau', 'truc', 'nhan'],
-        rating: '',
         process: 0
     }
 
     componentDidMount() {
         const { info } = this.props;
         this.setState({value: info.percent})
+        this.setState({process: info.process})
     }
 
     render() {
         const { info, user } = this.props;
+
         return (
-            <View>
+            <View style={styles.container}>
             <Text style={styles.taskName}>{info.name}</Text>
             <View >
-                <Text style={styles.staffDoing}>Handle: <Text style={{fontWeight: '500', color: '#000', fontSize: 20}}>{info.handle ? info.handle : 'None'}</Text></Text>
-                <View style={styles.container}>
+                <Text style={styles.staffDoing}>Handle: <Text style={{fontWeight: '400', color: '#000', fontSize: 20}}>{info.handle ? info.handle : 'None'}</Text></Text>
+                
                 <Text style={styles.taskDetail}>Detail: <Text style={styles.info}>{info.detail}</Text></Text>  
-                </View>
+                
                 {
                     user.isAdmin
                     ?   info.status === 'undone' ? 
@@ -45,7 +44,7 @@ export default class TaskDetail extends Component {
                         </View> 
                         :   info.status === 'doing' ? 
                             <View>
-                                <Text style={[styles.staffChoosing, {marginTop: 30}]}>Process: <Text style={styles.info}>{info.process}%</Text></Text> 
+                                <Text style={[styles.staffChoosing, {marginTop: 30, marginBottom: 20}]}>Process: <Text style={styles.info}>{info.process}%</Text></Text> 
                             </View> 
                         :   info.status === 'done' ? 
                             <View>
@@ -56,7 +55,7 @@ export default class TaskDetail extends Component {
                                         defaultRating={0}
                                         showRating={false}
                                         size={20}
-                                        /> 
+                                    /> 
                                 </View>
                                 <View style={[styles.choseBlock, {marginTop: 15}]}>
                                     <Text style={[styles.staffChoosing, {marginRight: 10}]}>Comment:</Text>
@@ -69,33 +68,32 @@ export default class TaskDetail extends Component {
                                 </TouchableOpacity>
                             </View> : null
                         
-                    : 
+                    : info.status === 'doing' ? 
                     <View>
-                    <View style={[styles.choseBlock, {flexDirection:'row', marginTop: 40}]}>
-                        <Text style={[styles.staffChoosing, {marginRight: 10}]}>Process:</Text>
-                        {/* <TextInput
-                            style={[styles.inputChoose, {marginLeft: 0}]}
-                        /> */}
-                        <View style={{flexDirection:'row-reverse'}}>
-                            <View style={{backgroundColor: '#fff', borderRadius: 15, width: 50, justifyContent: 'center', marginLeft: 10}}>
-                                <Text style={{alignSelf: 'center', fontSize: 18}}>{this.state.process}%</Text>
-                            </View>
-                            <Slider
-                                style={{width: 200, height: 40}}
-                                minimumValue={0}
-                                maximumValue={100}
-                                step={1}
-                                thumbTintColor="#4c4c85"
-                                minimumTrackTintColor="#4c4c85"
-                                maximumTrackTintColor="#fff"
-                                onValueChange={(value) => this.setState({process: value})}
-                            />
-                        </View>
+                    <View style={[styles.choseBlock]}>
+                        <Text style={[styles.staffChoosing, {marginRight: 10,}]}>Process:</Text>
+                        <TextInput
+                            style={styles.inputProcess}
+                            onChangeText={() => this.setState({process}) }
+                            value={this.state.process}
+                        />
+                        <Text style={{fontWeight: '700', marginLeft: 5}}>%</Text>
+
                     </View>
                     <TouchableOpacity style={styles.chooseButton}>
                         <Text style={styles.chooseButtonText}>Save</Text>
                     </TouchableOpacity>
-                    </View>
+                    </View> 
+                    
+                        :   info.status === 'done' ? 
+                            <View style={[styles.choseBlock,{marginRight: 55}]}>
+                                <Text style={[styles.staffChoosing, {marginRight: 15}]}>Rating:</Text>
+                                <Rating
+                                    imageSize={20}
+                                    readonly
+                                    startingValue={info.rating}
+                                />
+                            </View>  : null
 
                 }
                     
@@ -108,9 +106,10 @@ export default class TaskDetail extends Component {
 const styles = StyleSheet.create({
     container: {
         // alignItems: 'center',
+        marginTop: 30,
         paddingHorizontal: 25,
         paddingVertical: 16,
-        backgroundColor: '#FFF',
+        backgroundColor: '#fff',
         borderRadius:15,
         borderStyle: 'solid',
         borderWidth: 0.7,
@@ -126,20 +125,20 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         fontSize: 40,
         fontWeight: 'bold',
-        color: '#4c4c85',
+        color: '#6d6dbe',
     },
     staffDoing: {
         marginBottom: 15,
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#4c4c85',
-        alignSelf: 'center'
+        color: '#6d6dbe',
+        
     },
     staffChoosing: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#4c4c85',
-        alignSelf: 'center',
+        color: '#6d6dbe',
+        justifyContent: 'center'
     },
     taskDetail: {
         marginBottom: 15,
@@ -154,8 +153,8 @@ const styles = StyleSheet.create({
     },
     choseBlock: {
         flexDirection: 'row',
-        alignSelf: 'center',
-        marginTop: 20
+        marginTop: 20,
+        alignItems: 'center'
     },
     inputChoose:{
         flex: 0.8,
@@ -179,6 +178,15 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 18,
         alignSelf: 'center',
-    }
+    },
+    inputProcess: {
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        borderWidth: 1,
+        height: 40,
+        width: 45,
+        paddingHorizontal: 5,
+        textAlign: 'center'
+    },
 
 })
