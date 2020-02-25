@@ -17,8 +17,8 @@ export default class TaskDetail extends Component {
                 <ScrollView>
                     <View style={styles.container}>
                         <TaskDetailItem 
-                        info={info} 
-                        user={user}
+                            info={info} 
+                            user={user}
                         />
                     </View>
                 </ScrollView>

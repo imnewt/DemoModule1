@@ -7,9 +7,10 @@ import SignUpScreen from "./screens/SignUp"
 import HomeScreen from "./screens/Home";
 import TaskListScreen from "./screens/TaskList";
 import TaskDetailScreen from './screens/TaskDetail';
+
 const Stack = createStackNavigator();
 
-function App(props) {
+function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator 
@@ -17,9 +18,6 @@ function App(props) {
         screenOptions={{
           title: null,
           headerTransparent: true,
-          // headerStyle: {
-          //   backgroundColor: "#FF5562",
-          // },
           headerTitleAlign: "center",
           headerTintColor: "#1B2D2A",
           headerTitleStyle: {

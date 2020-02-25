@@ -7,15 +7,12 @@ const hihi=100
 export default class TaskDetail extends Component {
 
     state = {
-        value: 0,
-        user: ['chau', 'truc', 'nhan'],
-        rating: '',
-        process: 50
+        process: 0,
     }
 
     componentDidMount() {
         const { info } = this.props;
-        this.setState({value: info.percent})
+        this.setState({process: info.percent})
     }
 
     render() {
@@ -23,12 +20,12 @@ export default class TaskDetail extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.taskName}>{info.name}</Text>
-                <Text style={styles.staffDoing}>Handle: <Text style={styles.info}>{info.for ? info.for : 'None'}</Text></Text>
+                <Text style={styles.staffDoing}>Handle: <Text style={styles.info}>{info.handle ? info.handle : 'None'}</Text></Text>
                 <Text style={styles.taskDetail}>Detail: <Text style={styles.info}>{info.detail}</Text></Text>  
                 
                 {
                     user.isAdmin
-                    ?   info.status === 'undeliveried' ? 
+                    ?   info.status === 'undone' ? 
                         <View>
                             <View style={styles.choseBlock}>
                                 <Text style={styles.staffChoosing}>Choose:</Text>
@@ -44,7 +41,7 @@ export default class TaskDetail extends Component {
                         </View> 
                         :   info.status === 'doing' ? 
                             <View>
-                                <Text style={styles.staffChoosing}>Process: <Text style={styles.info}>{this.state.value}%</Text></Text>
+                                <Text style={styles.staffChoosing}>Process: <Text style={styles.info}>{info.process}%</Text></Text>
                                 
                             </View> 
                         :   info.status === 'done' ? 

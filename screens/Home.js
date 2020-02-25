@@ -46,8 +46,8 @@ export default class Home extends Component {
     handlePressToList = (tasks, status, user) => {
         const { navigation } = this.props;
         var filteredList = [];
-        if (status === "undeliveried") {
-            filteredList = tasks.filter(item => item.status === "undeliveried")
+        if (status === "undone") {
+            filteredList = tasks.filter(item => item.status === "undone")
         }
         else if (status === "doing") {
             filteredList = tasks.filter(item => item.status === "doing")
