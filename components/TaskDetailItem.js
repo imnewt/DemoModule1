@@ -6,18 +6,18 @@ import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 export default class TaskDetail extends Component {
 
     state = {
-        process: 0
+        process: ""
     }
 
     componentDidMount() {
         const { info } = this.props;
-        this.setState({value: info.percent})
-        this.setState({process: info.process})
+        this.setState({process: JSON.stringify(info.process)})
     }
 
     render() {
         const { info, user } = this.props;
-
+        const { process } = this.state
+        console.log(process)
         return (
             <View style={styles.container}>
             <Text style={styles.taskName}>{info.name}</Text>
@@ -50,11 +50,12 @@ export default class TaskDetail extends Component {
                             <View>
                                 <View style={[styles.choseBlock,{marginRight: 55}]}>
                                     <Text style={[styles.staffChoosing, {marginRight: 15}]}>Rating:</Text>
-                                    <AirbnbRating
-                                        count={5}
-                                        defaultRating={0}
+                                    <Rating
+                                        ratingCount={5}
+                                        startingValue={info.rating}
                                         showRating={false}
-                                        size={20}
+                                        imageSize={20}
+                                        fractions={1}
                                     /> 
                                 </View>
                                 <View style={[styles.choseBlock, {marginTop: 15}]}>
@@ -74,8 +75,8 @@ export default class TaskDetail extends Component {
                         <Text style={[styles.staffChoosing, {marginRight: 10,}]}>Process:</Text>
                         <TextInput
                             style={styles.inputProcess}
-                            onChangeText={() => this.setState({process}) }
-                            value={this.state.process}
+                            onChangeText={process => this.setState({process}) }
+                            value={process}
                         />
                         <Text style={{fontWeight: '700', marginLeft: 5}}>%</Text>
 
@@ -122,14 +123,15 @@ const styles = StyleSheet.create({
     taskName: {
         marginTop: 15,
         alignSelf: 'center',
-        marginBottom: 15,
-        fontSize: 40,
+        marginBottom: 25,
+        fontSize: 38,
         fontWeight: 'bold',
         color: '#6d6dbe',
+        textTransform: "uppercase",
     },
     staffDoing: {
         marginBottom: 15,
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: 'bold',
         color: '#6d6dbe',
         
@@ -141,7 +143,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     taskDetail: {
-        marginBottom: 15,
         fontSize: 20,
         fontWeight: 'bold',
         color: '#6d6dbe',
