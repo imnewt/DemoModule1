@@ -13,6 +13,7 @@ import Done from "../images/done.png"
 import Add from "../images/add.png"
 import Delete from "../images/delete.png"
 import LogOut from "../images/logout.png"
+import Lock from "../images/lock.png"
 
 export default class Home extends Component {
 
@@ -78,13 +79,14 @@ export default class Home extends Component {
                                 <Text style={{fontSize: 18, fontWeight: "700", marginLeft: 10, textTransform: "uppercase"}}>Employee manage</Text>
                                 <View style={styles.tasks}>
                                     <TaskButton func={this.handlePressToSignUp} tasks={tasks} status="new" icon={Add} user={user}/>
-                                    <TaskButton tasks={tasks} status="delete" icon={Delete} user={user}/>
+                                    <TaskButton func={() => {}} tasks={tasks} status="delete" icon={Delete} user={user}/>
                                 </View>
                             </View>
                             <View style={{marginTop: 20}}>
                                 <Text style={{fontSize: 18, fontWeight: "700", marginLeft: 10, textTransform: "uppercase"}}>Manage your account</Text>
                                 <View style={styles.tasks}>
                                     <TaskButton func={this.handlePressToSignIn} tasks={tasks} status="log out" icon={LogOut} user={user}/>
+                                    <TaskButton func={() => {}} tasks={tasks} status="password" icon={Lock} user={user}/>
                                 </View>
                             </View>
                         </View> 
@@ -110,6 +112,7 @@ export default class Home extends Component {
                                 <Text style={{fontSize: 18, fontWeight: "700", marginLeft: 10, textTransform: "uppercase"}}>Manage your account</Text>
                                 <View style={styles.tasks}>
                                     <TaskButton func={this.handlePressToSignIn} tasks={tasks} status="Log out" icon={LogOut} user={user}/>
+                                    <TaskButton func={() => {}} tasks={tasks} status="password" icon={Lock} user={user}/>
                                 </View>
                             </View>
                         </View>
