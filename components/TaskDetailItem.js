@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Picker, FlatList } from 'react-native';
+import { View, Text, StyleSheet, Picker, FlatList,} from 'react-native';
 import { AirbnbRating, Slider  } from 'react-native-elements';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
-const hihi=100
 export default class TaskDetail extends Component {
 
     state = {
-        process: 0,
+        value: 0,
+        user: ['chau', 'truc', 'nhan'],
+        rating: '',
+        process: 0
     }
 
     componentDidMount() {
         const { info } = this.props;
-        this.setState({process: info.percent})
+        this.setState({value: info.percent})
     }
 
     render() {
         const { info, user } = this.props;
         return (
-            <View style={styles.container}>
-                <Text style={styles.taskName}>{info.name}</Text>
-                <Text style={styles.staffDoing}>Handle: <Text style={styles.info}>{info.handle ? info.handle : 'None'}</Text></Text>
+            <View>
+            <Text style={styles.taskName}>{info.name}</Text>
+            <View >
+                <Text style={styles.staffDoing}>Handle: <Text style={{fontWeight: '500', color: '#000', fontSize: 20}}>{info.handle ? info.handle : 'None'}</Text></Text>
+                <View style={styles.container}>
                 <Text style={styles.taskDetail}>Detail: <Text style={styles.info}>{info.detail}</Text></Text>  
-                
+                </View>
                 {
                     user.isAdmin
                     ?   info.status === 'undone' ? 
@@ -41,12 +45,11 @@ export default class TaskDetail extends Component {
                         </View> 
                         :   info.status === 'doing' ? 
                             <View>
-                                <Text style={styles.staffChoosing}>Process: <Text style={styles.info}>{info.process}%</Text></Text>
-                                
+                                <Text style={[styles.staffChoosing, {marginTop: 30}]}>Process: <Text style={styles.info}>{info.process}%</Text></Text> 
                             </View> 
                         :   info.status === 'done' ? 
                             <View>
-                                <View style={styles.choseBlock}>
+                                <View style={[styles.choseBlock,{marginRight: 55}]}>
                                     <Text style={[styles.staffChoosing, {marginRight: 15}]}>Rating:</Text>
                                     <AirbnbRating
                                         count={5}
@@ -68,19 +71,35 @@ export default class TaskDetail extends Component {
                         
                     : 
                     <View>
-                        <View style={[styles.choseBlock, {marginTop: 15}]}>
-                            <Text style={[styles.staffChoosing, {marginRight: 10}]}>Process:</Text>
-                            <TextInput
-                                style={[styles.inputChoose, {marginLeft: 0}]}
+                    <View style={[styles.choseBlock, {flexDirection:'row', marginTop: 40}]}>
+                        <Text style={[styles.staffChoosing, {marginRight: 10}]}>Process:</Text>
+                        {/* <TextInput
+                            style={[styles.inputChoose, {marginLeft: 0}]}
+                        /> */}
+                        <View style={{flexDirection:'row-reverse'}}>
+                            <View style={{backgroundColor: '#fff', borderRadius: 15, width: 50, justifyContent: 'center', marginLeft: 10}}>
+                                <Text style={{alignSelf: 'center', fontSize: 18}}>{this.state.process}%</Text>
+                            </View>
+                            <Slider
+                                style={{width: 200, height: 40}}
+                                minimumValue={0}
+                                maximumValue={100}
+                                step={1}
+                                thumbTintColor="#4c4c85"
+                                minimumTrackTintColor="#4c4c85"
+                                maximumTrackTintColor="#fff"
+                                onValueChange={(value) => this.setState({process: value})}
                             />
                         </View>
-                        <TouchableOpacity style={styles.chooseButton}>
-                            <Text style={styles.chooseButtonText}>Save</Text>
-                         </TouchableOpacity>
+                    </View>
+                    <TouchableOpacity style={styles.chooseButton}>
+                        <Text style={styles.chooseButtonText}>Save</Text>
+                    </TouchableOpacity>
                     </View>
 
                 }
                     
+            </View>
             </View>
         )
     }
@@ -92,28 +111,35 @@ const styles = StyleSheet.create({
         paddingHorizontal: 25,
         paddingVertical: 16,
         backgroundColor: '#FFF',
-        borderRadius:10,
+        borderRadius:15,
         borderStyle: 'solid',
-        borderWidth: 0.5,
+        borderWidth: 0.7,
         borderColor: 'grey',
+        shadowColor: "grey",
+        shadowOpacity: 0.7,
+        shadowRadius: 15,
+        shadowOffset: { width: 0, height: 0 },
     },
     taskName: {
+        marginTop: 15,
         alignSelf: 'center',
         marginBottom: 15,
-        fontSize: 35,
+        fontSize: 40,
         fontWeight: 'bold',
-        color: '#6d6dbe',
+        color: '#4c4c85',
     },
     staffDoing: {
         marginBottom: 15,
-        fontSize: 20,
+        fontSize: 24,
         fontWeight: 'bold',
-        color: '#6d6dbe',
+        color: '#4c4c85',
+        alignSelf: 'center'
     },
     staffChoosing: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#6d6dbe',
+        color: '#4c4c85',
+        alignSelf: 'center',
     },
     taskDetail: {
         marginBottom: 15,
@@ -123,20 +149,23 @@ const styles = StyleSheet.create({
     },
     info: {
         fontWeight: '300',
-        color: '#000'
+        color: '#000',
+        fontSize: 18
     },
     choseBlock: {
         flexDirection: 'row',
-        alignItems: 'center',
+        alignSelf: 'center',
+        marginTop: 20
     },
     inputChoose:{
-        flex: 1,
+        flex: 0.8,
         height: 40, 
         borderWidth: 1,
         marginLeft: 10,
         borderRadius: 10,
         paddingLeft: 15,
-        fontSize: 16
+        fontSize: 16,
+        backgroundColor: '#fff',
     },
     chooseButton: {
         marginTop: 30,
