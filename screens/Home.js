@@ -1,17 +1,21 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 import BackgroundImage from '../components/BackgroundImage';
 import TaskButton from "../components/TaskButton"
-export default class Home extends Component {
 
-    state = {
-        staff: {
-            icon: 'https://image.flaticon.com/icons/png/128/951/951971.png',
-            status: 'doing',
-            tag: "Doing"
-        }
-    }
+import Avatar from "../images/avatar.png"
+import Bell from "../images/bell.png"
+import Undone from "../images/undone.png"
+import Doing from "../images/doing.png"
+import Done from "../images/done.png"
+import Add from "../images/add.png"
+import Delete from "../images/delete.png"
+import LogOut from "../images/logout.png"
+import Lock from "../images/lock.png"
+
+export default class Home extends Component {
 
     handlePressToSignUp = () => {
         const { navigation } = this.props;
@@ -24,7 +28,6 @@ export default class Home extends Component {
     }
 
     handlePressToList = (tasks, status, user) => {
-        console.log(status);
         const { navigation } = this.props;
         var filteredList = [];
         if (status === "undone") {
@@ -42,46 +45,76 @@ export default class Home extends Component {
     handlePressToTasks = (tasks,status,user) => {
         const { navigation } = this.props;
         var filteredList = [];
-        filteredList = tasks.filter(item => item.for === user.name);
+        filteredList = tasks.filter(item => item.handle === user.name && item.status === status);
         navigation.navigate("TaskList", {tasks: filteredList, user: user});
     }
  
     render() {
         const { navigation } = this.props;
         const { user, tasks } = this.props.route.params;
-        const { categories, staff } = this.state;
         return (
             <BackgroundImage>
                 {
                     user.isAdmin 
                     ?   <View style={styles.container}>
-                            <Text style={styles.greeting}>Hello admin <Text style={{fontWeight: "700"}}>{user.name}</Text>!</Text>
-                            {/* <TouchableOpacity onPress={this.handlePressToSignUp} activeOpacity={.6} style={styles.addUser}>
-                                <Image style={styles.img} source={{uri: 'https://image.flaticon.com/icons/png/128/2521/2521784.png'}} />
-                            </TouchableOpacity> */}
-                            {/* <TouchableOpacity onPress={this.handlePressToSignIn} activeOpacity={.6} style={styles.logOut}>
-                                <Image style={{height: 30, width: 30}} source={{uri: 'https://image.flaticon.com/icons/png/128/876/876779.png'}} />
-                            </TouchableOpacity> */}
-                            <TaskButton func={this.handlePressToList} tasks={tasks} status="undone" icon="https://image.flaticon.com/icons/png/128/1187/1187533.png" user={user}/>
-                            <TaskButton func={this.handlePressToList} tasks={tasks} status="doing" icon="https://image.flaticon.com/icons/png/512/1440/1440961.png" user={user}/>
-                            <TaskButton func={this.handlePressToList} tasks={tasks} status="done" icon="https://cdn0.iconfinder.com/data/icons/simplie-essential-action/22/action_039-checkmark-check-done-verify-512.png" user={user}/>
-                            {/* <FlatList 
-                                data={categories}
-                                renderItem={({ item }) =>
-                                    <View style={{ marginBottom: 16 }}>
-                                        <TaskButton func={this.handlePressToList} tasks={tasks} info={item} user={user}/>
+                            <View style={styles.topInfo}>
+                                <View style={styles.userInfo}>
+                                    <Image resizeMode="stretch" source={Avatar} style={styles.userImg}/>
+                                    <View style={{marginLeft: 15}}>
+                                        <Text style={styles.greeting}>Welcome {user.name}!</Text>
+                                        <Text style={{fontSize: 16, fontStyle: "italic"}}>38% of tasks has been done...</Text>
                                     </View>
-                                }
-                                keyExtractor={(item) => `${item.id}`}
-                                contentContainerStyle={{paddingHorizontal: 32, paddingTop: 8}}
-                            /> */}
+                                </View>
+                                <Image resizeMode="stretch" style={styles.bell} source={Bell}/>
+                            </View>
+                            <View style={{marginTop: 30}}>
+                                <Text style={{fontSize: 18, fontWeight: "700", marginLeft: 10, textTransform: "uppercase"}}>Your tasks</Text>
+                                <View style={styles.tasks}>
+                                    <TaskButton func={this.handlePressToList} tasks={tasks} status="undone" icon={Undone} user={user}/>
+                                    <TaskButton func={this.handlePressToList} tasks={tasks} status="doing" icon={Doing} user={user}/>
+                                    <TaskButton func={this.handlePressToList} tasks={tasks} status="done" icon={Done} user={user}/>
+                                </View>
+                            </View>
+                            <View style={{marginTop: 20}}>
+                                <Text style={{fontSize: 18, fontWeight: "700", marginLeft: 10, textTransform: "uppercase"}}>Employee manage</Text>
+                                <View style={styles.tasks}>
+                                    <TaskButton func={this.handlePressToSignUp} tasks={tasks} status="new" icon={Add} user={user}/>
+                                    <TaskButton func={() => {}} tasks={tasks} status="delete" icon={Delete} user={user}/>
+                                </View>
+                            </View>
+                            <View style={{marginTop: 20}}>
+                                <Text style={{fontSize: 18, fontWeight: "700", marginLeft: 10, textTransform: "uppercase"}}>Manage your account</Text>
+                                <View style={styles.tasks}>
+                                    <TaskButton func={this.handlePressToSignIn} tasks={tasks} status="log out" icon={LogOut} user={user}/>
+                                    <TaskButton func={() => {}} tasks={tasks} status="password" icon={Lock} user={user}/>
+                                </View>
+                            </View>
                         </View> 
-                    :   <View style={{paddingHorizontal: 16, position: 'relative', paddingTop: 12, justifyContent:'center'}}>
-                            <Text style={styles.greeting}>Hello {user.name}!</Text>
-                            <TouchableOpacity onPress={this.handlePressToSignIn} activeOpacity={.6} style={styles.logOut}>
-                                <Image style={{height: 30, width: 30}} source={{uri: 'https://image.flaticon.com/icons/png/128/876/876779.png'}} />
-                            </TouchableOpacity>
-                            <TaskButton info={staff} func={this.handlePressToTasks} navigation={navigation} user={user} tasks={tasks} />
+                    :   <View style={styles.container}>
+                            <View style={styles.topInfo}>
+                                <View style={styles.userInfo}>
+                                    <Image resizeMode="stretch" source={Avatar} style={styles.userImg}/>
+                                    <View style={{marginLeft: 15}}>
+                                        <Text style={styles.greeting}>Welcome {user.name}!</Text>
+                                        <Text style={{fontSize: 16, fontStyle: "italic"}}>You have 2 undone tasks...</Text>
+                                    </View>
+                                </View>
+                                <Image resizeMode="stretch" style={styles.bell} source={Bell}/>
+                            </View>
+                            <View style={{marginTop: 30}}>
+                                <Text style={{fontSize: 18, fontWeight: "700", marginLeft: 10, textTransform: "uppercase"}}>Your tasks</Text>
+                                <View style={styles.tasks}>
+                                    <TaskButton func={this.handlePressToTasks} tasks={tasks} status="doing" icon={Doing} user={user}/>
+                                    <TaskButton func={this.handlePressToTasks} tasks={tasks} status="done" icon={Done} user={user}/>
+                                </View>
+                            </View>
+                            <View style={{marginTop: 20}}>
+                                <Text style={{fontSize: 18, fontWeight: "700", marginLeft: 10, textTransform: "uppercase"}}>Manage your account</Text>
+                                <View style={styles.tasks}>
+                                    <TaskButton func={this.handlePressToSignIn} tasks={tasks} status="Log out" icon={LogOut} user={user}/>
+                                    <TaskButton func={() => {}} tasks={tasks} status="password" icon={Lock} user={user}/>
+                                </View>
+                            </View>
                         </View>
                 }
             </BackgroundImage>
@@ -91,26 +124,50 @@ export default class Home extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        height: `90%`,
+        flex: 1,
+        margin: 20
+    },
+    topInfo: {
+        flexDirection: "row",
+        alignItems: "center",
+        // justifyContent: "center"
+        //marginVertical: 40,
+    },
+    userInfo: {
+        flex: 4,
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    userImg: {
+        height: 60,
+        width: 60,
+        borderRadius: 100
     },
     greeting: {
-        fontSize: 20,
-        paddingTop: 20,
-        textAlign: 'center',
-        marginBottom: 40,
+        fontSize: 24,
+        fontWeight: "700"
     },
-    img: {
-        height: 32, 
-        width: 32
+    bell: {
+        height: 30,
+        width: 30,
     },
-    addUser: {
-        position: 'absolute',
-        top: 30,
-        right: 10
+    tasks: {
+        flexDirection: "row",
+        //justifyContent: "space-between",
+        //marginTop: 5
     },
-    logOut: {
-        position: 'absolute',
-        top: 30,
-        left: 10
-    }
+    // img: {
+    //     height: 32, 
+    //     width: 32
+    // },
+    // addUser: {
+    //     position: 'absolute',
+    //     top: 30,
+    //     right: 10
+    // },
+    // logOut: {
+    //     position: 'absolute',
+    //     top: 30,
+    //     left: 10
+    // }
 })
