@@ -21,7 +21,7 @@ export default class TaskListItem extends Component {
                     <TouchableOpacity style={styles.container} activeOpacity={.8} onPress={onPress}>
                         <View style={{alignItems: 'center'}}>
                             <ProgressCircle
-                                percent={info.process}
+                                percent={JSON.parse(info.process)}
                                 radius={45}
                                 borderWidth={8}
                                 color="#6d6dbe"
