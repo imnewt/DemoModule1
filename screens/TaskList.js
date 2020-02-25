@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import TaskListItem from '../components/TaskListItem';
-import Background from '../components/BackgroundImage'
+import Background from '../components/BackgroundImage';
 export default class TaskList extends Component {
 
     static navigationOptions = {
@@ -12,7 +12,6 @@ export default class TaskList extends Component {
 
     render() {
         const { tasks, user } = this.props.route.params;
-        console.log(tasks);
         const { navigation } = this.props;
         return (
             <Background>
@@ -20,7 +19,7 @@ export default class TaskList extends Component {
                         data={tasks}
                         numColumns={2}
                         renderItem={({ item }) => (
-                            <View style={{flex: 1, paddingHorizontal: 8}}>
+                            <View style={{width: 190, paddingHorizontal: 8}}>
                                 <TaskListItem info={item} onPress={() => navigation.navigate('TaskDetail', { info: item, user: user })}/>
                             </View>
                         )}
