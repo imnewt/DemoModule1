@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, View, TextInput, Text, SafeAreaView, TouchableOpacity, Image } from 'react-native'
+import AsyncStorage from "@react-native-community/async-storage"
 import BackgroundImage from "../components/BackgroundImage"
 
 import Logo from "../images/logo.png"
@@ -14,12 +15,13 @@ export default class SignIn extends React.Component{
         errorMessage: '' 
     }
 
-    handleLogin = () => {
+    handleLogin = async () => {
         const { users } = this.state
         const { navigation } = this.props
         const user = users.find(user => user.name === this.state.username && user.pass === this.state.password)
         if (user) {
-            navigation.navigate("Home", {user: user, tasks: db.tasks})
+            await AsyncStorage.setItem("user", JSON.stringify(user))
+            await navigation.navigate("StackNavigator");
         } 
         else{
             if(this.state.username){
@@ -43,6 +45,7 @@ export default class SignIn extends React.Component{
     componentDidMount() {
         this.setState({users: db.users})
     }
+
     render(){
         return(
             <BackgroundImage>
