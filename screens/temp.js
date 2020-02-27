@@ -34,46 +34,33 @@ class ProfileMenu3 extends React.Component{
     }
 }
 
-  const TabNaviga = createMaterialTopTabNavigator()
-  
-  function Haha() {
-    return (
-      <TabNaviga.Navigator screenOptions={{header: ({navigation}) => <ProfileMenu navigation= {navigation} />}} >
-        <TabNaviga.Screen name="ProfileMenu3" component={ProfileMenu3}/>
-        <TabNaviga.Screen name="ProfileMenu2" component={ProfileMenu2}/>
-        
-      </TabNaviga.Navigator>)
-  }
-  
-  
+const Tab = createMaterialTopTabNavigator()
 
-  const YNavigator = createStackNavigator()
-  
-  function Hihi() {
-    return (
-  <NavigationContainer>
-      <YNavigator.Navigator 
-        
-      >
-        <YNavigator.Screen name="huhu" component={Haha} options={{header: () => <ProfileMenu />}}/>
-      </YNavigator.Navigator>
-    </NavigationContainer>)
-
-  }
-
-
-  // ({
-  //   Home:{screen: TabNaviga,
-  //     navigationOptions: ({navigation}) => ({
-  //       header: <ProfileMenu navigation= {navigation} />,
-  //     })
-  //   }
-  // })
-
-function App() {
+function TabNavigator() {
   return (
-    <Hihi/>
-  );
+    <Tab.Navigator>
+      <Tab.Screen name="ProfileMenu3" component={ProfileMenu3}/>
+      <Tab.Screen name="ProfileMenu2" component={ProfileMenu2}/>
+    </Tab.Navigator>
+    )
 }
 
-export default App;
+const Stack = createStackNavigator()
+  
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="TabNavigator" component={TabNavigator} options={{header: () => <ProfileMenu />}}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+
+// function App() {
+//   return (
+//     <Hihi/>
+//   );
+// }
+
+//export default App;
