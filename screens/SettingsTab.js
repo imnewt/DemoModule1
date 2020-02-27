@@ -1,6 +1,6 @@
 import React from "react"
-
 import TabMainScreen from "../components/TabMainScreen"
+import AsyncStorage from "@react-native-community/async-storage";
 
 export default function SettingsTab(props) {
     const icons = [
@@ -18,9 +18,10 @@ export default function SettingsTab(props) {
         }
     ]
 
-    handlePressToSignIn = () => {
+    handlePressToSignIn = async () => {
         const { navigation } = props;
-        navigation.navigate("SignIn");
+        await AsyncStorage.removeItem("user");
+        await navigation.navigate("SignIn");
     }
 
     return(
