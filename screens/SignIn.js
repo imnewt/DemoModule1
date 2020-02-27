@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     },
     confirmBlock: {
         alignItems: 'center',
-        backgroundColor: '#5d5dbe',
+        backgroundColor: '#FBB13C',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 20,
