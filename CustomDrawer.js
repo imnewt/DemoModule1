@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+import { DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import { Text, Image, View, Dimensions, SafeAreaView, ImageBackground, TouchableOpacity, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import man from './images/man.png';
@@ -39,7 +39,7 @@ export default class CustomDrawer extends React.Component {
                 <Text style={{fontSize: 14, color: '#365179', fontStyle: 'italic'}}>Last login: 10:16:26 24/02/2020</Text>
               </ImageBackground>
               <DrawerContentScrollView style={{flex: 2/3}}>
-                <DrawerItemList {...this.props} activeTintColor='#6d6dbe' activeBackgroundColor='#fff' labelStyle={{fontSize: 18}}/>
+                <DrawerItemList  {...this.props} activeTintColor='#16DCA2' activeBackgroundColor='#fff' labelStyle={{fontSize: 18}}/>
               </DrawerContentScrollView>
             </SafeAreaView>
         )
