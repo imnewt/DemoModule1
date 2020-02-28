@@ -15,7 +15,7 @@ export default class TaskListItem extends Component {
     render() {
         const { info, onPress } = this.props;
         return (
-            <SafeAreaView>
+            <SafeAreaView style={{marginHorizontal: 20, marginVertical: 10, borderRadius: 20, overflow: "hidden"}}>
                 {
                     info.status.toLowerCase() !== 'done' ?
                     <TouchableOpacity style={styles.container} activeOpacity={.8} onPress={onPress}>

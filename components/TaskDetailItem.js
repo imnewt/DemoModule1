@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Picker, FlatList,} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, FlatList,} from 'react-native';
 import { AirbnbRating, Rating  } from 'react-native-elements';
 import AsyncStorage from "@react-native-community/async-storage"
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
@@ -28,7 +28,7 @@ export default class TaskDetail extends Component {
         return (
             <View style={styles.container}>
             <Text style={styles.taskName}>{info.name}</Text>
-            <View >
+            <View style={{margin: 20}}>
                 <Text style={styles.staffDoing}>Handle: <Text style={{fontWeight: '500', color: '#3A3042', fontSize: 22}}>{info.handle ? info.handle : 'None'}</Text></Text>
                 
                 <Text style={styles.taskDetail}>Detail: <Text style={styles.info}>{info.detail}</Text></Text>  
@@ -114,11 +114,11 @@ export default class TaskDetail extends Component {
 const styles = StyleSheet.create({
     container: {
         // alignItems: 'center',
-        marginTop: -60,
+        marginTop: 50,
         // paddingHorizontal: 25,
         // paddingVertical: 16,
-        // backgroundColor: '#fff',
-        // borderRadius:10,
+        backgroundColor: '#fff',
+        borderRadius: 20,
         // borderStyle: 'solid',
         // borderWidth: 0.7,
         // borderColor: 'grey',
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     taskName: {
         marginTop: 15,
         alignSelf: 'center',
-        marginBottom: 25,
+        // marginBottom: 25,
         fontSize: 38,
         fontWeight: 'bold',
         color: '#4CB963',
