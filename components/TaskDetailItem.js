@@ -1,28 +1,35 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Picker, FlatList,} from 'react-native';
 import { AirbnbRating, Rating  } from 'react-native-elements';
+import AsyncStorage from "@react-native-community/async-storage"
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class TaskDetail extends Component {
 
     state = {
-        process: ""
+        process: "",
+        user:{}
     }
-
+    
+    getData = async () => {
+        const data = await AsyncStorage.getItem("user");
+        // console.log(typeof JSON.parse(data));
+        await this.setState({user: JSON.parse(data)})
+    }
     componentDidMount() {
         const { info } = this.props;
         this.setState({process: JSON.stringify(info.process)})
+        this.getData()
     }
 
     render() {
-        const { info, user } = this.props;
-        const { process } = this.state
-        console.log(process)
+        const { info  } = this.props;
+        const { process, user } = this.state
         return (
             <View style={styles.container}>
             <Text style={styles.taskName}>{info.name}</Text>
             <View >
-                <Text style={styles.staffDoing}>Handle: <Text style={{fontWeight: '500', color: '#365179', fontSize: 22}}>{info.handle ? info.handle : 'None'}</Text></Text>
+                <Text style={styles.staffDoing}>Handle: <Text style={{fontWeight: '500', color: '#3A3042', fontSize: 22}}>{info.handle ? info.handle : 'None'}</Text></Text>
                 
                 <Text style={styles.taskDetail}>Detail: <Text style={styles.info}>{info.detail}</Text></Text>  
                 
@@ -126,30 +133,30 @@ const styles = StyleSheet.create({
         marginBottom: 25,
         fontSize: 38,
         fontWeight: 'bold',
-        color: '#FF8552',
+        color: '#4CB963',
         textTransform: "uppercase",
     },
     staffDoing: {
         marginBottom: 15,
         fontSize: 22,
         fontWeight: 'bold',
-        color: '#FF8552',
+        color: '#4CB963',
         
     },
     staffChoosing: {
         fontSize: 22,
         fontWeight: 'bold',
-        color: '#FF8552',
+        color: '#4CB963',
         justifyContent: 'center'
     },
     taskDetail: {
         fontSize: 22,
         fontWeight: 'bold',
-        color: '#FF8552',
+        color: '#4CB963',
     },
     info: {
         fontWeight: '300',
-        color: '#365179',
+        color: '#3A3042',
         fontSize: 20
     },
     choseBlock: {
@@ -170,7 +177,7 @@ const styles = StyleSheet.create({
     },
     chooseButton: {
         marginTop: 30,
-        backgroundColor: '#FF8552',
+        backgroundColor: '#4CB963',
         borderRadius: 20,
         //alignSelf: 'center'
     },

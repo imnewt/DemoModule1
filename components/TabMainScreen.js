@@ -6,7 +6,6 @@ const db = require("../db.json")
 
 export default function TabMainScreen(props) {
     const { title, icons, func, user } = props;
-    console.log(user)
     countAll = (tasks, status) => {
         return tasks.filter(item => item.status === status).length
     }

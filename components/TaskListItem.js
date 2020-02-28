@@ -24,7 +24,7 @@ export default class TaskListItem extends Component {
                                 percent={JSON.parse(info.process)}
                                 radius={33}
                                 borderWidth={8}
-                                color="#FF8552"
+                                color="#4CB963"
                                 shadowColor="#CFD8E9"
                                 bgColor="#fff"
                                 outerCircleStyle={{marginVertical: 10, marginLeft: 25}}
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: '700',
         marginBottom: 10,
-        color: '#FF8552',
+        color: '#4CB963',
         textTransform: "uppercase",
     },
     handle: {

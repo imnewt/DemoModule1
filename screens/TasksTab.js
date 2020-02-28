@@ -36,18 +36,22 @@ export default class TasksTab extends React.Component {
         this.getData()
     }
 
-    handlePressToList = (tasks, status, route) => {
-        console.log(tasks)
+    handlePressToList = (tasks, status, route, user) => {
         const { navigation } = this.props;
         var filteredList = [];
+        var result = []
+        if(user.isAdmin)   
+            result  = tasks
+        else
+            result = tasks.filter(item => item.handle === "Truc")
         if (status === "undone") {
-            filteredList = tasks.filter(item => item.status === "undone")
+            filteredList = result.filter(item => item.status === "undone")
         }
         else if (status === "doing") {
-            filteredList = tasks.filter(item => item.status === "doing")
+            filteredList = result.filter(item => item.status === "doing")
         }
         else {
-            filteredList = tasks.filter(item => item.status === "done")
+            filteredList = result.filter(item => item.status === "done")
         }
         navigation.navigate(route, {tasks: filteredList});
     }
@@ -55,7 +59,7 @@ export default class TasksTab extends React.Component {
     render() {
         const { user } = this.state
         return(
-            <TabMainScreen title="Your tasks" icons={icons} user={user} func={this.handlePressToList}/>
+            <TabMainScreen title="Your tasks" icons={icons} user={user}  func={this.handlePressToList}/>
         )
     }
     
