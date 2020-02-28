@@ -90,7 +90,8 @@ function StackNavigator() {
       <Stack.Screen name="TabNavigator" component={TabNavigator} options={{header: () => <HeaderImage />}}/>
       <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false, gestureEnabled: true }}/>
       <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerTransparent: true, title: null, headerTintColor: '#365179' }}/>
-      <Stack.Screen name="TaskList" component={TaskListScreen} options={{ headerTransparent: true, title: null }}/>
+      <Stack.Screen name="TaskList" component={TaskListScreen} options={{headerTransparent: true, title: null, headerBackTitle:'Back' }}/>
+      <Stack.Screen name="TaskDetail" component={TaskDetailScreen} options={{ headerTransparent: true, title: null, headerBackTitle:'Back' }}/>
     </Stack.Navigator>
   )
 }
