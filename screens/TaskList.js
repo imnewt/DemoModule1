@@ -1,48 +1,51 @@
 import React, { Component } from 'react';
-import { View, FlatList, StyleSheet, Text} from 'react-native';
+import AsyncStorage from "@react-native-community/async-storage"
+import { View, FlatList, Text, StyleSheet } from 'react-native';
 import TaskListItem from '../components/TaskListItem';
 import Background from '../components/BackgroundImage';
-export default class TaskList extends Component {
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
+export default class TaskList extends Component {
+    // state = {
+    //     user: {},
+       
+    // }
+
+    // getData = async () => {
+    //     const data = await AsyncStorage.getItem("user");
+    //     // console.log(typeof JSON.parse(data));
+    //     await this.setState({user: JSON.parse(data)})
+    // }
+    // componentDidMount() {
+    //     this.getData()
+    // }
 
 
     render() {
-        const { tasks, user } = this.props.route.params;
-        const { navigation } = this.props;
+        const { tasks } = this.props.route.params
+        console.log(tasks)
         return (
             // <Background>
             <View style={styles.container}>
-            {
-                tasks[0].status.toLowerCase() !== 'done' ?
-                <View style={{}}>
+            
+                <View>
                 <FlatList 
                     data={tasks}
                     renderItem={({ item }) => (
                         <View >
-                            <TaskListItem info={item} onPress={() => navigation.navigate('TaskDetail', { info: item, user: user })}/>
+                            <TaskListItem info={item} onPress={() => this.props.navigation.navigate('TaskDetail', { info: item })}/>
                         </View>
                     )}
                     keyExtractor={(item) => `${item.id}`}
                     contentContainerStyle={styles.container}
                     // scrollEnabled={false}
                 /> 
-                </View> :
-                <View>
-                <FlatList 
-                    data={tasks}
-                    renderItem={({ item }) => (
-                        <View >
-                            <TaskListItem info={item} onPress={() => navigation.navigate('TaskDetail', { info: item, user: user })}/>
-                        </View>
-                    )}
-                    keyExtractor={(item) => `${item.id}`}
-                    contentContainerStyle={styles.container}
-                />
                 </View> 
 
-            }
+            
             </View>
             // </Background>
+            
         )
     }
 }
@@ -50,6 +53,7 @@ export default class TaskList extends Component {
 const styles = StyleSheet.create({
     container: {
         // paddingHorizontal: 8,
+        marginTop: 74,
         backgroundColor: '#fff',
         height: '100%',
         borderTopWidth: 2,
@@ -69,9 +73,4 @@ const styles = StyleSheet.create({
         fontSize: 15,
         padding: 10
     }
-    // container: {
-    //     paddingHorizontal: 16,
-    //     marginVertical: 50,
-    //     //paddingTop: 32
-    // }
 })

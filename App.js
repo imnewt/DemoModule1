@@ -1,90 +1,45 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Ionicons from "react-native-vector-icons/Ionicons"
-import {Text, Image, View} from "react-native"
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { Dimensions } from "react-native"
+import StackNavigator from './StackNavigator';
 import SignInScreen from "./screens/SignIn"
-import SignUpScreen from "./screens/SignUp"
-import HomeScreen from "./screens/Home";
-import TaskListScreen from "./screens/TaskList";
-import TaskDetailScreen from './screens/TaskDetail';
+import InvestScreen from './screens/Invest';
+import ContactScreen from './screens/Contact';
+import CustomDrawer from './CustomDrawer';
+const  { width } = Dimensions.get('window');
 
 
-class ProfileMenu extends React.Component{
-  render() {
-   return(
-      <View>
-        <Image resizeMode='stretch' style={{width: `100%`, height: 100}} source={{uri: 'https://www.myamcat.com/blog/wp-content/uploads/2017/08/job-search-remotive-home.png'}} />
-        <Ionicons name="ios-add" size={25}/>
-      </View>
-    )
-   }
-  }
+const Drawer = createDrawerNavigator();
 
-class ProfileMenu2 extends React.Component{
-  render() {
-    return(
-      <Text>ProfileMenu2</Text>
-    )
-    }
-}
-class ProfileMenu3 extends React.Component{
-  render() {
-    return(
-      <Text>ProfileMenu3</Text>
-    )
-    }
-}
-
-const Tab = createMaterialTopTabNavigator()
-
-function TabNavigator() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="ProfileMenu3" component={ProfileMenu3}/>
-      <Tab.Screen name="ProfileMenu2" component={ProfileMenu2}/>
-    </Tab.Navigator>
-    )
-}
-
-const Stack = createStackNavigator()
-  
-export default function App() {
+export default function App(props) {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="TabNavigator" component={TabNavigator} options={{header: () => <ProfileMenu />}}/>
-      </Stack.Navigator>
+      <Drawer.Navigator 
+        initialRouteName="SignIn"
+        drawerStyle={{width: (width - 80)}}
+        drawerContent={props => <CustomDrawer {...props} />}
+        screenOptions={({route}) => ({
+          drawerIcon: ({color, size}) => {
+            let iconName;
+            if(route.name === 'StackNavigator')
+              iconName = "ios-home";
+            else if(route.name === 'Contact us')
+              iconName = 'ios-call';
+            else
+              iconName = 'ios-podium';
+            return <Ionicons name={iconName} size={size} color={color}/>
+          }
+        }
+        )}
+      >
+        <Drawer.Screen name="StackNavigator" component={StackNavigator} options={{drawerLabel: 'Home'}}/>
+        <Drawer.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false, gestureEnabled: false }}/>
+        <Drawer.Screen name="Investment Management" component={InvestScreen}/>
+        <Drawer.Screen name="Contact us" component={ContactScreen}/>
+        <Drawer.Screen name="Settings" component={ContactScreen}/>
+      </Drawer.Navigator>
     </NavigationContainer>
-  )
+  );
 }
-
-// const Stack = createStackNavigator();
-
-// function App() {
-//   return (
-//     <NavigationContainer>
-//       <Stack.Navigator 
-//         initialRouteName="SignIn"
-//         screenOptions={{
-//           title: null,
-//           headerTransparent: true,
-//           headerTitleAlign: "center",
-//           headerTintColor: "#1B2D2A",
-//           headerTitleStyle: {
-//             fontWeight: "bold"
-//           }
-//         }}
-//       >
-//         <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }}/>
-//         <Stack.Screen name="SignUp" component={SignUpScreen}/>
-//         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
-//         <Stack.Screen name="TaskList" component={TaskListScreen}/>
-//         <Stack.Screen name="TaskDetail" component={TaskDetailScreen}/>
-//       </Stack.Navigator>
-//     </NavigationContainer>
-//   );
-// }
-
-// export default App;

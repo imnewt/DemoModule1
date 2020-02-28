@@ -96,13 +96,13 @@ const styles = StyleSheet.create({
         marginBottom: 32,
         fontWeight: "700",
         fontStyle: "italic",
-        color: "#5d4dbe"
+        color: "#365179"
     },
     textInput: {
         marginTop: 20,
         height: 60,
         fontSize: 18,
-        backgroundColor: "#FFF",
+        backgroundColor: "#E8F0EF",
         borderRadius: 20,
         paddingLeft: 20,
         shadowColor: "#000",
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     },
     confirmBlock: {
         alignItems: 'center',
-        backgroundColor: '#5d5dbe',
+        backgroundColor: 'tomato',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 20,
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 20,
         padding: 16,
-        color: '#FFF',
+        color: '#DBE9EE',
         textTransform: "uppercase"
     }
 
