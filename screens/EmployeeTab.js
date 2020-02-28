@@ -7,8 +7,12 @@ export default function EmployeeTab(props) {
         {
             name: "ios-person-add",
             title: "New",
-            route: "SignUp",
-            isLast: true
+            route: "SignUp"
+        },
+        {
+            name: "ios-build",
+            title: "Edit",
+            route: ""
         },
         {
             name: "ios-trash",

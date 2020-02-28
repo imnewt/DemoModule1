@@ -3,7 +3,7 @@ import { DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navi
 import { Text, Image, View, Dimensions, SafeAreaView, ImageBackground, TouchableOpacity, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import man from './images/man.png';
-import bg from './images/linear.png';
+import bg from './images/gradient-bg.jpg';
 const  { width } = Dimensions.get('window');
 export default class CustomDrawer extends React.Component {
 
@@ -35,7 +35,7 @@ export default class CustomDrawer extends React.Component {
                     </TouchableOpacity>
                   </View>
                 </View>
-                <Text style={styles.name}>{user.name}</Text>
+                <Text style={styles.name}>John Smith</Text>
                 <Text style={{fontSize: 14, color: '#365179', fontStyle: 'italic'}}>Last login: 10:16:26 24/02/2020</Text>
               </ImageBackground>
               <DrawerContentScrollView style={{flex: 2/3}}>

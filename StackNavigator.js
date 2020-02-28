@@ -52,7 +52,7 @@ function TabNavigator() {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused }) => {
           let iconName, iconColor;
-          let active = "#1A4064", inactive = "#EEF"
+          let active = "#3A3042", inactive = "#F6EFEE"
           if (route.name === 'TasksTab') {
             iconName = 'ios-list-box';
             iconColor = focused ? active : inactive;
@@ -69,14 +69,10 @@ function TabNavigator() {
       tabBarOptions={{
         showIcon: true,
         showLabel: false,
-        indicatorStyle: {
-          backgroundColor: "red",
-          width: 2
-        },
         tabStyle: {
-          backgroundColor: "#F16B37",
+          backgroundColor: "#4CB963",
           height: 60
-        }
+        },
       }}
     >
       <Tab.Screen name="EmployeeManageTab" component={EmployeeManageStackScreen}/>
