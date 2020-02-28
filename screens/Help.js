@@ -5,7 +5,7 @@ export default class Invest extends Component{
     render() {
       return(
         <View style={styles.container}>
-          <Text>Investment Management</Text>
+          <Text>Help</Text>
         </View>
       )
     }

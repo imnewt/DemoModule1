@@ -4,7 +4,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 import HeaderImage from "./components/HeaderImage"
 
-import EmployeeTab from "./screens/EmployeeTab";
+import StaffTab from "./screens/StaffTab";
 import TasksTab from "./screens/TasksTab";
 import SettingsTab from "./screens/SettingsTab";
 import SignUpScreen from "./screens/SignUp";
@@ -24,12 +24,12 @@ function TasksStackScreen() {
 }
 
 
-const EmployeeManageStack = createStackNavigator()
-function EmployeeManageStackScreen() {
+const StaffManageStack = createStackNavigator()
+function StaffManageStackScreen() {
   return (
-    <EmployeeManageStack.Navigator initialRouteName="EmployeeTab" screenOptions={{headerShown: false}}>
-      <EmployeeManageStack.Screen name="EmployeeTab" component={EmployeeTab}/>
-    </EmployeeManageStack.Navigator>
+    <StaffManageStack.Navigator initialRouteName="StaffTab" screenOptions={{headerShown: false}}>
+      <StaffManageStack.Screen name="StaffTab" component={StaffTab}/>
+    </StaffManageStack.Navigator>
   )
 }
 
@@ -56,7 +56,7 @@ function TabNavigator() {
           if (route.name === 'TasksTab') {
             iconName = 'ios-list-box';
             iconColor = focused ? active : inactive;
-          } else if (route.name === 'EmployeeManageTab') {
+          } else if (route.name === 'StaffManageTab') {
             iconName = "ios-contacts";
             iconColor = focused ? active : inactive;
           } else if (route.name === 'SettingsTab') {
@@ -75,7 +75,7 @@ function TabNavigator() {
         },
       }}
     >
-      <Tab.Screen name="EmployeeManageTab" component={EmployeeManageStackScreen}/>
+      <Tab.Screen name="StaffManageTab" component={StaffManageStackScreen}/>
       <Tab.Screen name="TasksTab" component={TasksStackScreen}/>
       <Tab.Screen name="SettingsTab" component={SettingsStackScreen}/>
     </Tab.Navigator>

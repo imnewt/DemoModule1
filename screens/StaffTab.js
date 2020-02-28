@@ -2,7 +2,7 @@ import React from "react"
 
 import TabMainScreen from "../components/TabMainScreen"
 
-export default function EmployeeTab(props) {
+export default function StaffTab(props) {
     const icons = [
         {
             name: "ios-person-add",
@@ -28,6 +28,6 @@ export default function EmployeeTab(props) {
     }
 
     return(
-        <TabMainScreen title="Employee manage" icons={icons} func={handlePressToSignUp}/>
+        <TabMainScreen title="Staff manage" icons={icons} func={handlePressToSignUp}/>
     )
 }

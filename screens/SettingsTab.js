@@ -5,8 +5,18 @@ import AsyncStorage from "@react-native-community/async-storage";
 export default function SettingsTab(props) {
     const icons = [
         {
+            name: "ios-person",
+            title: "Account",
+            route: ""
+        },
+        {
             name: "ios-lock",
-            title: "Change password",
+            title: "Password",
+            route: "SignIn"
+        },
+        {
+            name: "ios-call",
+            title: "Contact Us",
             route: "",
             isLast: true
         },
