@@ -3,7 +3,8 @@ import { View, Text, StyleSheet, ScrollView, FlatList,} from 'react-native';
 import { AirbnbRating, Rating  } from 'react-native-elements';
 import AsyncStorage from "@react-native-community/async-storage"
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-
+import Ionicons from "react-native-vector-icons/Ionicons"
+import ProgressCircle from 'react-native-progress-circle';
 export default class TaskDetail extends Component {
 
     state = {
@@ -27,85 +28,102 @@ export default class TaskDetail extends Component {
         const { process, user } = this.state
         return (
             <View style={styles.container}>
-            <Text style={styles.taskName}>{info.name}</Text>
-            <View style={{margin: 20}}>
-                <Text style={styles.staffDoing}>Handle: <Text style={{fontWeight: '500', color: '#3A3042', fontSize: 22}}>{info.handle ? info.handle : 'None'}</Text></Text>
-                
-                <Text style={styles.taskDetail}>Detail: <Text style={styles.info}>{info.detail}</Text></Text>  
-                
+                <Text style={styles.taskName}>{info.name}</Text>
                 {
-                    user.isAdmin
-                    ?   info.status === 'undone' ? 
-                        <View>
-                            <View style={styles.choseBlock}>
-                                <Text style={styles.staffChoosing}>Choose:</Text>
-                                <TextInput
-                                    style={styles.inputChoose}
-                                    placeholder='Staff name'
-                                />
-                            </View>
-                            <TouchableOpacity style={styles.chooseButton}>
-                                <Text style={styles.chooseButtonText}>Save</Text>
-                            </TouchableOpacity>
-    
-                        </View> 
-                        :   info.status === 'doing' ? 
+                    info.status === "doing" &&
+                    <View style={{alignSelf: "center"}}>
+                        <ProgressCircle
+                            percent={JSON.parse(info.process)}
+                            radius={33}
+                            borderWidth={8}
+                            color="#4CB963"
+                            shadowColor="#CFD8E9"
+                            bgColor="#fff"
+                            outerCircleStyle={{marginTop: 15}}
+                        >
+                            <Text style={{ fontSize: 18 }}>{info.process}%</Text>
+                        </ProgressCircle>
+                    </View>
+                }
+                <View style={{margin: 30, marginTop: 20}}>
+                    <View style={{flexDirection: "row"}}>
+                        <Ionicons name="ios-person" size={25} color="#4CB963" />
+                        <Text style={{ marginLeft: 20, fontSize: 20}}>{info.handle ? info.handle : 'None'}</Text>
+                    </View>
+                    <View style={{flexDirection: "row", marginTop: 20}}>
+                        <Text>
+                            <Ionicons name="ios-barcode" size={25} color="#4CB963" />
+                            <Text style={{fontSize: 20}}>    {info.detail}</Text>
+                        </Text>
+                    </View>
+                    {
+                        user.isAdmin
+                        ?   info.status === 'undone' ? 
                             <View>
-                                <Text style={[styles.staffChoosing, {marginTop: 30, marginBottom: 20}]}>Process: <Text style={[styles.info,{fontWeight: '500'}]}>{info.process}%</Text></Text> 
-                            </View> 
-                        :   info.status === 'done' ? 
-                            <View>
-                                <View style={[styles.choseBlock,{marginRight: 55}]}>
-                                    <Text style={[styles.staffChoosing, {marginRight: 15}]}>Rating:</Text>
-                                    <Rating
-                                        ratingCount={5}
-                                        startingValue={info.rating}
-                                        showRating={false}
-                                        imageSize={20}
-                                        fractions={1}
-                                    /> 
-                                </View>
-                                <View style={[styles.choseBlock, {marginTop: 15}]}>
-                                    <Text style={[styles.staffChoosing, {marginRight: 10}]}>Comment:</Text>
+                                <View style={styles.choseBlock}>
+                                    <Ionicons name="ios-send" size={25} color="#4CB963" />
                                     <TextInput
-                                        style={[styles.inputChoose, {marginLeft: 0}]}
+                                        style={styles.inputChoose}
+                                        placeholder='Staff name'
                                     />
                                 </View>
                                 <TouchableOpacity style={styles.chooseButton}>
                                     <Text style={styles.chooseButtonText}>Save</Text>
                                 </TouchableOpacity>
-                            </View> : null
-                        
-                    : info.status === 'doing' ? 
-                    <View>
-                    <View style={[styles.choseBlock]}>
-                        <Text style={[styles.staffChoosing, {marginRight: 10,}]}>Process:</Text>
-                        <TextInput
-                            style={styles.inputProcess}
-                            onChangeText={process => this.setState({process}) }
-                            value={process}
-                        />
-                        <Text style={{fontWeight: '700', marginLeft: 5, color:'#365179'}}>%</Text>
-
-                    </View>
-                    <TouchableOpacity style={styles.chooseButton}>
-                        <Text style={styles.chooseButtonText}>Save</Text>
-                    </TouchableOpacity>
-                    </View> 
-                    
-                        :   info.status === 'done' ? 
-                            <View style={[styles.choseBlock,{marginRight: 55}]}>
-                                <Text style={[styles.staffChoosing, {marginRight: 15}]}>Rating:</Text>
-                                <Rating
-                                    imageSize={20}
-                                    readonly
-                                    startingValue={info.rating}
+        
+                            </View> 
+                            :   info.status === 'done' ? 
+                                <View>
+                                    <View style={[styles.choseBlock,{marginRight: 55}]}>
+                                        <Ionicons name="ios-git-branch" size={25} color="#4CB963" />
+                                        <Rating
+                                            style={{marginLeft: 30}}
+                                            ratingCount={5}
+                                            startingValue={info.rating}
+                                            showRating={false}
+                                            imageSize={20}
+                                            fractions={1}
+                                        /> 
+                                    </View>
+                                    <View style={[styles.choseBlock, {marginTop: 15}]}>
+                                        <Ionicons name="ios-text" size={25} color="#4CB963" />
+                                        <TextInput
+                                            style={styles.inputChoose}
+                                            placeholder='Comment'
+                                        />
+                                    </View>
+                                    <TouchableOpacity style={styles.chooseButton}>
+                                        <Text style={styles.chooseButtonText}>Save</Text>
+                                    </TouchableOpacity>
+                                </View> : null
+                            
+                        : info.status === 'doing' ? 
+                        <View>
+                            <View style={[styles.choseBlock]}>
+                                <Text style={[styles.staffChoosing, {marginRight: 10,}]}>Process:</Text>
+                                <TextInput
+                                    style={styles.inputProcess}
+                                    onChangeText={process => this.setState({process}) }
+                                    value={process}
                                 />
-                            </View>  : null
+                                <Text style={{fontWeight: '700', marginLeft: 5, color:'#365179'}}>%</Text>
 
-                }
-                    
-            </View>
+                            </View>
+                            <TouchableOpacity style={styles.chooseButton}>
+                                <Text style={styles.chooseButtonText}>Save</Text>
+                            </TouchableOpacity>
+                        </View> 
+                            :   info.status === 'done' ? 
+                                <View style={[styles.choseBlock,{marginRight: 55}]}>
+                                    <Text style={[styles.staffChoosing, {marginRight: 15}]}>Rating:</Text>
+                                    <Rating
+                                        imageSize={20}
+                                        readonly
+                                        startingValue={info.rating}
+                                    />
+                                </View>  : null
+                    }
+                </View>
             </View>
         )
     }
@@ -113,25 +131,14 @@ export default class TaskDetail extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        // alignItems: 'center',
-        marginTop: 50,
-        // paddingHorizontal: 25,
-        // paddingVertical: 16,
+        marginTop: 60,
         backgroundColor: '#fff',
         borderRadius: 20,
-        // borderStyle: 'solid',
-        // borderWidth: 0.7,
-        // borderColor: 'grey',
-        // shadowColor: "grey",
-        // shadowOpacity: 0.7,
-        // shadowRadius: 15,
-        // shadowOffset: { width: 0, height: 0 },
     },
     taskName: {
-        marginTop: 15,
+        marginTop: 30,
         alignSelf: 'center',
-        // marginBottom: 25,
-        fontSize: 38,
+        fontSize: 32,
         fontWeight: 'bold',
         color: '#4CB963',
         textTransform: "uppercase",
@@ -167,9 +174,9 @@ const styles = StyleSheet.create({
     inputChoose:{
         flex: 0.8,
         height: 40, 
-        borderWidth: 1,
+        borderBottomWidth: 1,
         borderColor: '#365179',
-        marginLeft: 10,
+        marginLeft: 20,
         borderRadius: 10,
         paddingLeft: 15,
         fontSize: 16,
@@ -179,14 +186,14 @@ const styles = StyleSheet.create({
         marginTop: 30,
         backgroundColor: '#4CB963',
         borderRadius: 20,
-        //alignSelf: 'center'
     },
     chooseButtonText: {
-        padding: 20,
+        padding: 16,
         color: '#fff',
         fontWeight: 'bold',
         fontSize: 18,
         alignSelf: 'center',
+        textTransform: "uppercase"
     },
     inputProcess: {
         backgroundColor: '#fff',

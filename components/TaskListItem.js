@@ -2,15 +2,8 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, SafeAreaView, Image } from 'react-native';
 import ProgressCircle from 'react-native-progress-circle';
 import { Rating } from 'react-native-elements';
-import Person1 from '../images/person.png';
-import Person4 from '../images/woman.png';
-import Person2 from '../images/asthma.png';
-import Person3 from '../images/man.png';
+import Avatar from "../images/avatar.png"
 export default class TaskListItem extends Component {
-
-    state = {
-        avatar: [Person1, Person2, Person3, Person4, Person1, Person2, Person3, Person4, Person1, Person2, Person2]
-    }
 
     render() {
         const { info, onPress } = this.props;
@@ -32,13 +25,13 @@ export default class TaskListItem extends Component {
                                 <Text style={{ fontSize: 18 }}>{info.process}%</Text>
                             </ProgressCircle>
                         </View>
-                        <View style={{alignItems: 'center', flex: 1, marginRight: 20}}>
+                        <View style={{alignItems: 'center', flex: 2}}>
                             <Text style={styles.name}>{info.name}</Text>
                             <Text style={styles.handle}>Handle: { info.handle ? info.handle : 'None'}</Text>  
                         </View>
                     </TouchableOpacity> : 
                     <TouchableOpacity style={styles.container} activeOpacity={.6} onPress={onPress}>
-                        <Image source={this.state.avatar[Math.round(Math.random()*10)]} style={styles.img}/>
+                        <Image source={Avatar} style={styles.img}/>
                         <View style={{alignItems: 'center'}}>
                             <Text style={[styles.name, {marginTop: 10}]}>{info.name}</Text>
                             <Text style={styles.handle}>Handle: { info.handle ? info.handle : 'None'}</Text>
@@ -74,6 +67,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         color: '#4CB963',
         textTransform: "uppercase",
+        textAlign: 'center'
     },
     handle: {
         color: '#365179',

@@ -17,7 +17,6 @@ export default function TabMainScreen(props) {
     }
 
     return (
-        <ImageBackground style={{flex: 1}} source={{uri: "https://www.htmlcsscolor.com/preview/gallery/FAFCE4.png"}} >
         <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
             { 
@@ -48,7 +47,7 @@ export default function TabMainScreen(props) {
                 keyExtractor={item => item.name}
                 numColumns={2}
             />
-        </View></ImageBackground>
+        </View>
     )
 }
 
@@ -57,6 +56,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         paddingTop: 20,
+        backgroundColor: "#F9FDEA"
     },
     title: {
         fontSize: 20,
