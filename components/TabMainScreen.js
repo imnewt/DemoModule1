@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from "react-native"
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, ImageBackground } from "react-native"
 import Ionicons from "react-native-vector-icons/Ionicons"
 
 const db = require("../db.json")
@@ -17,6 +17,7 @@ export default function TabMainScreen(props) {
     }
 
     return (
+        <ImageBackground style={{flex: 1}} source={{uri: "https://www.htmlcsscolor.com/preview/gallery/FAFCE4.png"}} >
         <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
             { 
@@ -47,7 +48,7 @@ export default function TabMainScreen(props) {
                 keyExtractor={item => item.name}
                 numColumns={2}
             />
-        </View>
+        </View></ImageBackground>
     )
 }
 

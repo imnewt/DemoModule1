@@ -4,8 +4,8 @@ import TabMainScreen from "../components/TabMainScreen"
 
 const icons = [
     {
-        name: "ios-albums",
-        title: "All",
+        name: "ios-add-circle-outline",
+        title: "New",
         route: "TaskList"
     },
     {
