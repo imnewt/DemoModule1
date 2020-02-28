@@ -19,28 +19,28 @@ export default class TaskListItem extends Component {
                 {
                     info.status.toLowerCase() !== 'done' ?
                     <TouchableOpacity style={styles.container} activeOpacity={.8} onPress={onPress}>
-                        <View style={{alignItems: 'center'}}>
+                        <View style={{alignItems: 'center', flexDirection: 'row', flex: 1}}>
                             <ProgressCircle
                                 percent={JSON.parse(info.process)}
-                                radius={45}
+                                radius={33}
                                 borderWidth={8}
-                                color="#6d6dbe"
+                                color="#FF8552"
                                 shadowColor="#CFD8E9"
                                 bgColor="#fff"
-                                outerCircleStyle={{marginBottom: 10}}
+                                outerCircleStyle={{marginVertical: 10, marginLeft: 25}}
                             >
                                 <Text style={{ fontSize: 18 }}>{info.process}%</Text>
                             </ProgressCircle>
                         </View>
-                        <View style={{alignItems: 'center'}}>
+                        <View style={{alignItems: 'center', flex: 1, marginRight: 20}}>
                             <Text style={styles.name}>{info.name}</Text>
-                            <Text style={styles.handle}>Handle: { info.handle ? info.handle : 'None'}</Text>
+                            <Text style={styles.handle}>Handle: { info.handle ? info.handle : 'None'}</Text>  
                         </View>
                     </TouchableOpacity> : 
                     <TouchableOpacity style={styles.container} activeOpacity={.6} onPress={onPress}>
                         <Image source={this.state.avatar[Math.round(Math.random()*10)]} style={styles.img}/>
                         <View style={{alignItems: 'center'}}>
-                            <Text style={styles.name}>{info.name}</Text>
+                            <Text style={[styles.name, {marginTop: 10}]}>{info.name}</Text>
                             <Text style={styles.handle}>Handle: { info.handle ? info.handle : 'None'}</Text>
                         </View>
                         <Rating
@@ -58,31 +58,38 @@ export default class TaskListItem extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 20,
-        borderRadius: 20,
         backgroundColor: '#fff',
-        paddingVertical: 32,
-        borderWidth: 3,
+        paddingVertical: 10,
+        borderBottomWidth: 2,
         borderStyle: 'solid',
         borderColor: '#EEE',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 15,
+        alignItems: "center"
     },
     name: {
         fontSize: 20,
         fontWeight: '700',
         marginBottom: 10,
-        color: '#6d6dbe',
-        textTransform: "uppercase"
+        color: '#FF8552',
+        textTransform: "uppercase",
     },
     handle: {
-        color: '#666',
+        color: '#365179',
         fontSize: 16,
         fontStyle: 'italic',
-        marginBottom: 10
+        marginBottom: 10,
+        marginRight: 5,
+        fontWeight: '500'
     },
     img: {
         height: 64, 
         width: 64, 
         alignSelf: 'center', 
-        marginBottom: 10
+        // marginBottom: 10
+    },
+    rating: {
+        alignSelf: 'center'
     }
 })

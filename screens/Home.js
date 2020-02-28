@@ -39,14 +39,14 @@ export default class Home extends Component {
         else {
             filteredList = tasks.filter(item => item.status === "done")
         }
-        navigation.navigate("TaskList", {tasks: filteredList, user: user});
+        navigation.navigate("TaskList", {tasks: filteredList, user: user, name: filteredList[0].status.toUpperCase()});
     }
 
     handlePressToTasks = (tasks,status,user) => {
         const { navigation } = this.props;
         var filteredList = [];
         filteredList = tasks.filter(item => item.handle === user.name && item.status === status);
-        navigation.navigate("TaskList", {tasks: filteredList, user: user});
+        navigation.navigate("TaskList", {tasks: filteredList, user: user, name: filteredList[0].status.toUpperCase()});
     }
  
     render() {

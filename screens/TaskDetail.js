@@ -13,8 +13,8 @@ export default class TaskDetail extends Component {
     render() {
         const { info, user } = this.props.route.params;
         return (
-            <Background>
-                <ScrollView>
+            // <Background>
+                <ScrollView style={{height: '100%', backgroundColor: '#fff'}}>
                     <View style={styles.container}>
                         <TaskDetailItem 
                             info={info} 
@@ -22,7 +22,7 @@ export default class TaskDetail extends Component {
                         />
                     </View>
                 </ScrollView>
-            </Background>
+            // </Background>
             
         )
     }

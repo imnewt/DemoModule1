@@ -22,7 +22,7 @@ export default class TaskDetail extends Component {
             <View style={styles.container}>
             <Text style={styles.taskName}>{info.name}</Text>
             <View >
-                <Text style={styles.staffDoing}>Handle: <Text style={{fontWeight: '400', color: '#000', fontSize: 20}}>{info.handle ? info.handle : 'None'}</Text></Text>
+                <Text style={styles.staffDoing}>Handle: <Text style={{fontWeight: '500', color: '#365179', fontSize: 22}}>{info.handle ? info.handle : 'None'}</Text></Text>
                 
                 <Text style={styles.taskDetail}>Detail: <Text style={styles.info}>{info.detail}</Text></Text>  
                 
@@ -44,7 +44,7 @@ export default class TaskDetail extends Component {
                         </View> 
                         :   info.status === 'doing' ? 
                             <View>
-                                <Text style={[styles.staffChoosing, {marginTop: 30, marginBottom: 20}]}>Process: <Text style={styles.info}>{info.process}%</Text></Text> 
+                                <Text style={[styles.staffChoosing, {marginTop: 30, marginBottom: 20}]}>Process: <Text style={[styles.info,{fontWeight: '500'}]}>{info.process}%</Text></Text> 
                             </View> 
                         :   info.status === 'done' ? 
                             <View>
@@ -78,7 +78,7 @@ export default class TaskDetail extends Component {
                             onChangeText={process => this.setState({process}) }
                             value={process}
                         />
-                        <Text style={{fontWeight: '700', marginLeft: 5}}>%</Text>
+                        <Text style={{fontWeight: '700', marginLeft: 5, color:'#365179'}}>%</Text>
 
                     </View>
                     <TouchableOpacity style={styles.chooseButton}>
@@ -107,18 +107,18 @@ export default class TaskDetail extends Component {
 const styles = StyleSheet.create({
     container: {
         // alignItems: 'center',
-        marginTop: 30,
-        paddingHorizontal: 25,
-        paddingVertical: 16,
-        backgroundColor: '#fff',
-        borderRadius:15,
-        borderStyle: 'solid',
-        borderWidth: 0.7,
-        borderColor: 'grey',
-        shadowColor: "grey",
-        shadowOpacity: 0.7,
-        shadowRadius: 15,
-        shadowOffset: { width: 0, height: 0 },
+        marginTop: -60,
+        // paddingHorizontal: 25,
+        // paddingVertical: 16,
+        // backgroundColor: '#fff',
+        // borderRadius:10,
+        // borderStyle: 'solid',
+        // borderWidth: 0.7,
+        // borderColor: 'grey',
+        // shadowColor: "grey",
+        // shadowOpacity: 0.7,
+        // shadowRadius: 15,
+        // shadowOffset: { width: 0, height: 0 },
     },
     taskName: {
         marginTop: 15,
@@ -126,31 +126,31 @@ const styles = StyleSheet.create({
         marginBottom: 25,
         fontSize: 38,
         fontWeight: 'bold',
-        color: '#6d6dbe',
+        color: '#FF8552',
         textTransform: "uppercase",
     },
     staffDoing: {
         marginBottom: 15,
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: 'bold',
-        color: '#6d6dbe',
+        color: '#FF8552',
         
     },
     staffChoosing: {
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: 'bold',
-        color: '#6d6dbe',
+        color: '#FF8552',
         justifyContent: 'center'
     },
     taskDetail: {
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: 'bold',
-        color: '#6d6dbe',
+        color: '#FF8552',
     },
     info: {
         fontWeight: '300',
-        color: '#000',
-        fontSize: 18
+        color: '#365179',
+        fontSize: 20
     },
     choseBlock: {
         flexDirection: 'row',
@@ -161,6 +161,7 @@ const styles = StyleSheet.create({
         flex: 0.8,
         height: 40, 
         borderWidth: 1,
+        borderColor: '#365179',
         marginLeft: 10,
         borderRadius: 10,
         paddingLeft: 15,
@@ -169,7 +170,7 @@ const styles = StyleSheet.create({
     },
     chooseButton: {
         marginTop: 30,
-        backgroundColor: '#6d6dbe',
+        backgroundColor: '#FF8552',
         borderRadius: 20,
         //alignSelf: 'center'
     },
@@ -187,7 +188,8 @@ const styles = StyleSheet.create({
         height: 40,
         width: 45,
         paddingHorizontal: 5,
-        textAlign: 'center'
+        textAlign: 'center',
+        borderColor: '#365179'
     },
 
 })
