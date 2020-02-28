@@ -6,8 +6,9 @@ const db = require("../db.json")
 
 export default function TabMainScreen(props) {
     const { title, icons, func, user } = props;
-    console.log(user)
     countAll = (tasks, status) => {
+        if (status === "all")
+            return tasks.length
         return tasks.filter(item => item.status === status).length
     }
 
@@ -34,7 +35,7 @@ export default function TabMainScreen(props) {
                             <Ionicons name={item.name} size={40} color="#094074" />
                             <Text style={styles.iconTitle}>{item.title}</Text>
                             { 
-                                ["Undone","Doing","Done"].includes(item.title) 
+                                ["All","Undone","Doing","Done"].includes(item.title) 
                                 ?   user.isAdmin 
                                     ?   <Text style={styles.num}>({countAll(db.tasks, item.title.toLowerCase())})</Text>
                                     :   <Text style={styles.num}>({count(db.tasks, item.title.toLowerCase(), user)})</Text>

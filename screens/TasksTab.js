@@ -4,6 +4,11 @@ import TabMainScreen from "../components/TabMainScreen"
 
 const icons = [
     {
+        name: "ios-albums",
+        title: "All",
+        route: "TaskList"
+    },
+    {
         name: "ios-watch",
         title: "Undone",
         route: "TaskList"
@@ -11,7 +16,8 @@ const icons = [
     {
         name: "ios-sync",
         title: "Doing",
-        route: "TaskList"
+        route: "TaskList",
+        isLast: true
     },
     {
         name: "ios-checkbox-outline",

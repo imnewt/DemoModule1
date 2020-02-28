@@ -1,11 +1,9 @@
 import React from "react"
-import { Image, View, StyleSheet, ImageBackground } from "react-native"
-import HI from "../images/performance-management.png"
+import { ImageBackground } from "react-native"
+import HI from "../images/test.jpg"
 import Ionicons from "react-native-vector-icons/Ionicons"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import { useNavigation } from "@react-navigation/native"
-
-
 
 export default function HeaderImage() {
     const navigation = useNavigation();

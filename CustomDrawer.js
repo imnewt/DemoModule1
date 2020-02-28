@@ -4,7 +4,7 @@ import { Text, Image, View, Dimensions, SafeAreaView, ImageBackground, Touchable
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AsyncStorage from "@react-native-community/async-storage";
 import man from './images/avatar.png';
-import bg from './images/gradient-bg.jpg';
+import bg from './images/test.jpg';
 const  { width } = Dimensions.get('window');
 export default class CustomDrawer extends React.Component {
 
