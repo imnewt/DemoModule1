@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+import { DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import { Text, Image, View, Dimensions, SafeAreaView, ImageBackground, TouchableOpacity, StyleSheet } from "react-native";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import AsyncStorage from "@react-native-community/async-storage";
-import man from './images/man.png';
+import man from './images/avatar.png';
 import bg from './images/gradient-bg.jpg';
 const  { width } = Dimensions.get('window');
 export default class CustomDrawer extends React.Component {
@@ -26,12 +27,10 @@ export default class CustomDrawer extends React.Component {
             <SafeAreaView style={{flex: 1}}>
               <ImageBackground resizeMode='stretch' source={bg} style={styles.imgbackground}>
                 <View style={styles.container}>
-                  <View style={{ flex: 1, marginLeft: 5 }}>
-                    <Image source={man} style={styles.img}/>
-                  </View>
-                  <View style={{flex: 1, alignItems: 'center', marginRight: 20}}>
+                  <Image source={man} style={styles.img}/>
+                  <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                     <TouchableOpacity activeOpacity={.7} style={styles.btn_LogOut}>
-                      <Text>Log Out</Text>
+                      <Ionicons name='ios-log-out' size={25}/>
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -39,7 +38,7 @@ export default class CustomDrawer extends React.Component {
                 <Text style={{fontSize: 14, color: '#365179', fontStyle: 'italic'}}>Last login: 10:16:26 24/02/2020</Text>
               </ImageBackground>
               <DrawerContentScrollView style={{flex: 2/3}}>
-                <DrawerItemList {...this.props} activeTintColor='#6d6dbe' activeBackgroundColor='#fff' labelStyle={{fontSize: 18}}/>
+                <DrawerItemList  {...this.props} activeTintColor='#16DCA2' activeBackgroundColor='#fff' labelStyle={{fontSize: 18}}/>
               </DrawerContentScrollView>
             </SafeAreaView>
         )
@@ -51,7 +50,7 @@ const styles = StyleSheet.create({
         flex: 1/3,
         padding: 16, 
         paddingTop: 30, 
-        paddingBottom: 10
+        paddingBottom: 20
     },
     container: {
         flex: 1, 
@@ -61,16 +60,18 @@ const styles = StyleSheet.create({
     },
     img: {
         height: 80, 
-        width: 80, 
-        borderRadius: 999, 
-        borderWidth: 4, 
-        borderColor: '#FFF'
+        width: 80,
+        borderColor: '#FFF',
+        borderWidth: 3,
+        borderRadius: 999,
+        marginLeft: 15
     },
     btn_LogOut: { 
         paddingVertical: 8, 
         paddingHorizontal: 20, 
         backgroundColor: '#FFF', 
-        borderRadius: 10
+        borderRadius: 10,
+        marginLeft: 80
     },
     name: {
         fontSize: 22, 

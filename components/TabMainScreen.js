@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         textTransform: "uppercase"
     },
     iconBlock: {
-        marginTop: 20
+        marginTop: 40,
     },
     icon: {
         paddingVertical: 40,

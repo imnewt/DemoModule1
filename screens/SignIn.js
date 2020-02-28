@@ -21,7 +21,7 @@ export default class SignIn extends React.Component{
         const user = users.find(user => user.name === this.state.username && user.pass === this.state.password)
         if (user) {
             await AsyncStorage.setItem("user", JSON.stringify(user))
-            await navigation.navigate("StackNavigator");
+            await navigation.navigate("TabNavigator");
         } 
         else{
             if(this.state.username){
