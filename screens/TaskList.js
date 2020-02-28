@@ -14,7 +14,7 @@ export default class TaskList extends Component {
             <View style={styles.container}>
             {
                 tasks[0].status.toLowerCase() !== 'done' ?
-                <View>
+                <View style={{}}>
                 <FlatList 
                     data={tasks}
                     renderItem={({ item }) => (
