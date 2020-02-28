@@ -54,12 +54,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        marginTop: 20
+        paddingTop: 20,
     },
     title: {
         fontSize: 20,
         fontWeight: "700",
-        color: "#000",
+        color: "#3A3042",
         textTransform: "uppercase"
     },
     iconBlock: {
